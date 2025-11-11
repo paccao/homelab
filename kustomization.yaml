@@ -1,0 +1,4 @@
+---
+resources:
+  - infra/longhorn/
+  - infra/secrets/sealed-secrets/
