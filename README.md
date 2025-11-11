@@ -84,3 +84,11 @@ https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-
 - Local LLM like Qwen / Glm 4.5 air / Claude Sonnet 4.5 Thinking. Requirements: 1 or more GPUs with 24GB+ VRAM (A100, H100, 3090, etc.)
 
 [More info on selfhosted LLMs](https://www.reddit.com/r/LocalLLM/comments/1otaaj8/if_people_understood_how_good_local_llms_are/)
+
+## Sealed secrets
+
+Sealing a secret:
+
+```bash
+kubectl create secret generic test --dry-run=client --from-literal=key=value -o yaml | kubeseal --controller-namespace sealed-secrets --format yaml -w sealed-secret.yaml
+```

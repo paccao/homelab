@@ -2,3 +2,4 @@ k9s 0.50.16
 flux2 2.7.3
 helm 3.19.0
 kustomize 5.8.0
+kubeseal 0.33.1
