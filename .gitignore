@@ -1,0 +1,21 @@
+# Secrets
+*.pub
+*.key
+*.decrypted*.yaml
+/age.key
+/github-deploy.key
+/github-deploy.key.pub
+/github-push-token.txt
+# Template config files
+/cluster.yaml
+/nodes.yaml
+# Kubernetes
+**/talos/controlplane.yaml
+**/talos/worker.yaml
+kubeconfig.yaml
+talosconfig.yaml
+# Misc.
+.private/
+.task/
+.venv/
+Thumbs.db
