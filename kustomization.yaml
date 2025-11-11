@@ -2,3 +2,4 @@
 resources:
   - infra/longhorn/
   - infra/secrets/sealed-secrets/
+  # - infra/prometheus/prometheus-operator/ # CRDs are too large for applying with kubectl directly, check the README

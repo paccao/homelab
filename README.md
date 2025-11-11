@@ -92,3 +92,20 @@ Sealing a secret:
 ```bash
 kubectl create secret generic test --dry-run=client --from-literal=key=value -o yaml | kubeseal --controller-namespace sealed-secrets --format yaml -w sealed-secret.yaml
 ```
+
+## Prometheus Operator
+
+[Install using yaml files](https://prometheus-operator.dev/docs/getting-started/installation/#install-using-yaml-files)
+
+Install prometheus CRDs in a custom namespace:
+
+```bash
+NAMESPACE=observability
+TMPDIR=$(mktemp -d)
+LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
+curl -s "https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/refs/tags/$LATEST/kustomization.yaml" > "$TMPDIR/kustomization.yaml"
+curl -s "https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/refs/tags/$LATEST/bundle.yaml" > "$TMPDIR/bundle.yaml"
+cp .tool-versions $TMPDIR
+kubectl apply -f infra/prometheus/prometheus-operator namespace.yaml
+(cd $TMPDIR && kustomize edit set namespace $NAMESPACE) && kubectl create -k "$TMPDIR"
+```bash
