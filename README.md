@@ -77,7 +77,7 @@ Take regular backups and test restoring backups in a local k8s cluster
 
 https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-a-backup/#incremental-backup
 
-## Services to install
+## Services to consider
 
 - Local LLM like Qwen / Glm 4.5 air / Claude Sonnet 4.5 Thinking. Requirements: 1 or more GPUs with 24GB+ VRAM (A100, H100, 3090, etc.)
 
