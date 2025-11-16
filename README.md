@@ -18,7 +18,11 @@ A fully automated, GitOps-managed Kubernetes cluster running bare-metal with Tal
 - **Base OS**: Talos Linux
 - **Container Orchestration**: Kubernetes
 - **GitOps Engine**: Flux CD
-- **Storage**: TBD - 5x 4TB raidz2 ZFS
+- **Storage**: Longhorn. TBD - NAS 5x 4TB raidz2 ZFS
+
+### Network stack
+- **Loadbalancer**: Metal LB
+- **DNS**: CoreDNS
 
 ## 🌟 Key Features
 
