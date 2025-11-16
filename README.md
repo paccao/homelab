@@ -5,30 +5,29 @@
 ![GitOps](https://img.shields.io/badge/GitOps-orange.svg?style=for-the-badge)
 ![FluxCD](https://img.shields.io/badge/FluxCD-green.svg?style=for-the-badge)
 
-A fully automated, GitOps-managed Kubernetes cluster running bare-metal with Talos Linux.
+A *fully automated, GitOps-managed* Kubernetes cluster running bare-metal with Talos Linux.*
 
 ## Infrastructure Overview
 
-### 👷 Hardware
-- **Control Plane**: 1x Asus NUC 14 Pro
-- **Worker nodes**: TBD
+### Hardware
+- **Control Plane**: 1x Asus NUC 14 Pro, 1x raspberry pi 5
+- **Worker nodes**: 2x raspberry pi 5
 - **Storage**: TBD - DIY network attached storage
 
 ### Software Stack
 - **Base OS**: Talos Linux
 - **Container Orchestration**: Kubernetes
 - **GitOps Engine**: Flux CD
-- **Storage**: Longhorn. TBD - NAS 5x 4TB raidz2 ZFS
+- **Storage**: Longhorn
 
 ### Network stack
 - **Loadbalancer**: Metal LB
 - **DNS**: CoreDNS
 
-## 🌟 Key Features
+## Key Features
 
-- **GitOps-First Approach**: All cluster configurations and applications are managed through Git using the App of Apps pattern
+- **GitOps-First Approach**: All cluster configurations and applications are managed through Git using the App of Apps pattern and deployed with Flux CD
 - **Declarative Configuration**: Everything-as-code philosophy
-- **Automated Deployments**: Changes to this repository automatically sync to the cluster via Argo CD
 - **Persistent Storage**: TBD - Longhorn block storage for random R/W, NAS RAID for long-term
 
 ## 🏛️ Architecture
@@ -37,20 +36,15 @@ A fully automated, GitOps-managed Kubernetes cluster running bare-metal with Tal
 graph TD
     A[GitHub Repository] -->|GitOps| B[Flux CD]
     B -->|Manages| C[Kubernetes Cluster]
-    C -->|Control Plane| D[Asus NUC]
-    C -->|Workers| E[TBD]
+    C -->|Control Plane| D[Asus NUC, 1x raspberry pi 5]
+    C -->|Workers| E[2x raspberry pi 5]
     C -->|Storage| F[TBD]
     B -->|App of Apps| G[Applications]
 ```
 
-## 📦 Components
-
-- **Cluster OS**: Talos Linux with system extensions
-- **Networking**: MetalLB + Traefik
-- **Storage**: TBD
-- **GitOps**: Flux CD with App of Apps pattern
-
 ---
+
+# Other information:
 
 ### How to generate system extensions with TalOS
 
