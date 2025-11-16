@@ -11,7 +11,7 @@ A *fully automated, GitOps-managed* Kubernetes cluster running bare-metal with T
 
 ### Hardware
 - **Control Plane**: 1x Asus NUC 14 Pro, 1x raspberry pi 5
-- **Worker nodes**: 2x raspberry pi 5
+- **Worker nodes**: 2x raspberry pi 5, 1x raspberry pi 4B
 - **Storage**: TBD - DIY network attached storage
 
 ### Software Stack
@@ -28,17 +28,17 @@ A *fully automated, GitOps-managed* Kubernetes cluster running bare-metal with T
 
 - **GitOps-First Approach**: All cluster configurations and applications are managed through Git using the App of Apps pattern and deployed with Flux CD
 - **Declarative Configuration**: Everything-as-code philosophy
-- **Persistent Storage**: TBD - Longhorn block storage for random R/W, NAS RAID for long-term
+- **Persistent Storage**: Longhorn SSD block storage for random R/W. TBD - NAS ZFS Raid for long-term storage
 
 ## 🏛️ Architecture
 
 ```mermaid
 graph TD
-    A[GitHub Repository] -->|GitOps| B[Flux CD]
+    A[Git Repository] -->|GitOps| B[Flux CD]
     B -->|Manages| C[Kubernetes Cluster]
     C -->|Control Plane| D[Asus NUC, 1x raspberry pi 5]
-    C -->|Workers| E[2x raspberry pi 5]
-    C -->|Storage| F[TBD]
+    C -->|Workers| E[2x raspberry pi 5, 1x raspberry pi 4B]
+    C -->|Storage| F[TBD - NAS]
     B -->|App of Apps| G[Applications]
 ```
 
