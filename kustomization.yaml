@@ -1,6 +1,9 @@
 ---
+# k apply -k infra/prometheus/setup first
+
 resources:
   - infra/metallb
   - infra/longhorn/
   - infra/secrets/sealed-secrets/
+  - infra/prometheus/
   # - infra/prometheus/prometheus-operator/ # CRDs are too large for applying with kubectl directly, check the README
