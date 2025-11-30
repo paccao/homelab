@@ -27,12 +27,27 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 
 # Enable L2 announcements
-kubeProxyReplacement: strict
-l2announcements:
-  enabled: true
+kubeProxyReplacement: true
 devices: eth0
 externalIPs:
   enabled: true
+
+l2announcements:
+  enabled: true
+  leaseDuration: 10s
+  leaseRenewDeadline: 5s
+  leaseRetryPeriod: 1s
+
+k8sClientRateLimit: # Client rate limits to prevent flooding the K8s API
+
+# How to calculate: QPS = services * (1 / leaseRenewDeadline)
+# example
+#services = 65
+#leaseRenewDeadline = 2s
+#QPS = 65 * (1 / 2s) = 32.5 QPS
+
+  qps: 5 # default 10
+  burst: 10 # default 20
 
 # Enable gateway API and extra params to disable kube-proxy
 gatewayAPI:
