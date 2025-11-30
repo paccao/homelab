@@ -42,6 +42,6 @@ I accept the risk of unauthorized privileged access to the monitoring namespace 
 ### Things to follow up on based on this decision outcome
 
 - Set up Network policys to limit access to the monitoring namespace.
-- Look over the
-- Set up audit/ warnings for attempted unexpected access to the monitoring namespace
+- Look over all the RBAC rules I have defined in the prometheus directory.
+- Set up audit/ warnings for attempted unexpected access to the monitoring namespace.
 - Set up audit/ warnings for common attack vectors related to privileged access to a node. For example: a process tries to mount a path like /proc.
