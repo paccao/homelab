@@ -1,6 +1,6 @@
 # [short title of solved problem and solution]
 
-- Status: [proposed | rejected | accepted | deprecated | … | superseded by ADR-5 <!-- optional -->
+- Status: [Proposed | Rejected | Accepted | Mitigated | Deprecated | … | Superseded by ADR-5 <!-- optional -->
 - Date: [YYYY-MM-DD when the decision was last updated] <!-- optional -->
 
 ## Context and Problem Statement
@@ -17,10 +17,10 @@ Relates to: [Add issue URL] <!-- optional -->
 
 ## Considered Options
 
-- [option 1]
-- [option 2]
-- [option 3]
-- … <!-- numbers of options can vary -->
+1. [option 1]
+1. [option 2]
+1. [option 3]
+1. … <!-- numbers of options can vary -->
 
 ## Decision Outcome
 
@@ -64,6 +64,10 @@ Chosen option: "[option 1]", because [justification. e.g., only option, which me
 - Good, because [argument b]
 - Bad, because [argument c]
 - … <!-- numbers of pros and cons can vary -->
+
+## Things to follow up on based on this decision outcome <!-- optional -->
+
+- [description, issue URL]  <!-- optional -->
 
 ## Links <!-- optional -->
 

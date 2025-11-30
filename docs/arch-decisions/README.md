@@ -7,3 +7,4 @@ The aim of this record is to keep track of major decisions I take in the design 
 To get started, copy the [template](template.md).
 
 ## ADRs
+- [ADR-0](0-prometheus.md) - Prometheus pod security
