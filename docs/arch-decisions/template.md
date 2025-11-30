@@ -3,11 +3,11 @@
 - Status: [proposed | rejected | accepted | deprecated | … | superseded by ADR-5 <!-- optional -->
 - Date: [YYYY-MM-DD when the decision was last updated] <!-- optional -->
 
-Technical Story: [description / issue URL] <!-- optional -->
-
 ## Context and Problem Statement
 
 [Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.]
+
+Relates to: [Add issue URL] <!-- optional -->
 
 ## Decision Drivers <!-- optional -->
 
