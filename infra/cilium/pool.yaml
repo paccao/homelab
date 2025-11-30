@@ -1,0 +1,12 @@
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumLoadBalancerPool
+metadata:
+  name: internal-pool
+spec:
+  cidrs:
+    - start: 192.168.30.10
+      stop: 192.168.30.110
+  serviceSelector:
+    matchSelector:
+      ip-pool: internal

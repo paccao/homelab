@@ -1,0 +1,9 @@
+# this file is patched onto an existing talos cluster
+cluster:
+  network:
+    # The CNI used.
+    cni:
+      name: none
+    #     urls:
+    proxy:
+      disabled: true # disables kube-proxy - required for Cilium with support for GatewayAPI

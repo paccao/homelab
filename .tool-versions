@@ -3,3 +3,5 @@ flux2 2.7.3
 helm 3.19.0
 kustomize 5.8.0
 kubeseal 0.33.1
+cilium-cli 0.18.8
+cilium-hubble 1.18.3
