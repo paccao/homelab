@@ -1,7 +1,7 @@
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
 metadata:
-  name: internal-pool
+  name: l2-announcement-policy
 spec:
   externalIPs: true
   loadBalancerIPs: true
