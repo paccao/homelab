@@ -7,6 +7,8 @@
 
 A *fully automated, GitOps-managed* Kubernetes cluster running bare-metal with Talos Linux.*
 
+In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasoning for design decision I take on my kubernetes cluster.
+
 ## Infrastructure Overview
 
 ### Hardware
