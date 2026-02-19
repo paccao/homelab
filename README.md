@@ -5,7 +5,7 @@
 ![GitOps](https://img.shields.io/badge/GitOps-orange.svg?style=for-the-badge)
 ![FluxCD](https://img.shields.io/badge/FluxCD-green.svg?style=for-the-badge)
 
-A bare-metal Kubernetes cluster with TalOS Linux.
+A bare-metal Kubernetes cluster running on TalOS Linux.
 
 In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasoning for design decision I take on my kubernetes cluster.
 
@@ -13,8 +13,8 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 
 ### Hardware
 - **Control Plane**: 1x Asus NUC 14 Pro, 1x raspberry pi 5
-- **Worker nodes**: 2x raspberry pi 5, 1x raspberry pi 4B
-- **Storage**: TBD - DIY network attached storage
+- **Worker nodes**: 3x raspberry pi 5, 1x raspberry pi 4B
+- **Storage**: NVMe SSDs + ZFS Raid hard drives
 
 ### Software Stack
 - **Base OS**: Talos Linux
@@ -22,9 +22,10 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 - **GitOps Engine**: Flux CD
 - **Storage**: Longhorn
 
-### Network stack
-- **Loadbalancer**: Metal LB
+### Network Stack
+- **CNI**: Cilium
 - **DNS**: CoreDNS
+- **Certificates**: Let's encrypt
 
 ## Key Features
 
@@ -38,9 +39,9 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 graph TD
     A[Git Repository] -->|GitOps| B[Flux CD]
     B -->|Manages| C[Kubernetes Cluster]
-    C -->|Control Plane| D[Asus NUC, 1x raspberry pi 5]
-    C -->|Workers| E[2x raspberry pi 5, 1x raspberry pi 4B]
-    C -->|Storage| F[TBD - NAS]
+    C -->|Control Plane| D[1x Asus NUC, 1x raspberry pi 5]
+    C -->|Workers| E[3x raspberry pi 5, 1x raspberry pi 4B]
+    C -->|Storage| F[Longhorn + external NAS]
     B -->|App of Apps| G[Applications]
 ```
 
