@@ -45,6 +45,10 @@ graph TD
     B -->|App of Apps| G[Applications]
 ```
 
+## Security
+
+Scan cluster for with [kubescape](https://github.com/kubescape/kubescape) to detect vulnerabilities and misconfiguration.
+
 ---
 
 ## Asdf package manager
