@@ -11,7 +11,7 @@ Installing node exporter with unrestricted permissions could be a security issue
 
 Is it worth adding these additional risks compared to the metrics gained with privileged access, and can the risks be mitigated somehow?
 
-## Decision Drivers <!-- optional -->
+## Decision Drivers
 
 - I want network I/O stats from the control plane nodes, which requires [privileged access](https://github.com/prometheus-community/helm-charts/issues/4837#issuecomment-2845595774)
 - I want CPU/memory usage from system daemons (kubelet, containerd), which also requires privileged access.

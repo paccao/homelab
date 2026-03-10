@@ -5,5 +5,5 @@ metadata:
     pod-security.kubernetes.io/warn: privileged
     pod-security.kubernetes.io/warn-version: latest
     pod-security.kubernetes.io/audit: restricted
-    pod-security.kubernetes.io/enforce: privileged # Lets us create privileged pods in the entire monitoring namespace. Could be improved.
+    pod-security.kubernetes.io/enforce: privileged # Lets us create privileged pods in the entire monitoring namespace. Could be improved with an external admission controller like Kyverno or Gatekeeper
   name: monitoring
