@@ -1,59 +1,66 @@
 ---
 ipam:
-  mode: kubernetes
+    mode: kubernetes
 
 securityContext:
-  capabilities:
-    ciliumAgent:
-      - CHOWN
-      - KILL
-      - NET_ADMIN
-      - NET_RAW
-      - IPC_LOCK
-      - SYS_ADMIN
-      - SYS_RESOURCE
-      - DAC_OVERRIDE
-      - FOWNER
-      - SETGID
-      - SETUID
-    cleanCiliumState:
-      - NET_ADMIN
-      - SYS_ADMIN
-      - SYS_RESOURCE
+    capabilities:
+        ciliumAgent:
+            - CHOWN
+            - KILL
+            - NET_ADMIN
+            - NET_RAW
+            - IPC_LOCK
+            - SYS_ADMIN
+            - SYS_RESOURCE
+            - DAC_OVERRIDE
+            - FOWNER
+            - SETGID
+            - SETUID
+        cleanCiliumState:
+            - NET_ADMIN
+            - SYS_ADMIN
+            - SYS_RESOURCE
 
 cgroup:
-  autoMount:
-    enabled: false
-  hostRoot: /sys/fs/cgroup
+    autoMount:
+        enabled: false
+    hostRoot: /sys/fs/cgroup
 
 # Enable L2 announcements
 kubeProxyReplacement: true
 devices: eth0
 externalIPs:
-  enabled: true
+    enabled: true
 
 l2announcements:
-  enabled: true
-  leaseDuration: 10s
-  leaseRenewDeadline: 5s
-  leaseRetryPeriod: 1s
+    enabled: true
+    leaseDuration: 10s
+    leaseRenewDeadline: 5s
+    leaseRetryPeriod: 1s
 
 k8sClientRateLimit: # Client rate limits to prevent flooding the K8s API
+    # How to calculate: QPS = services * (1 / leaseRenewDeadline)
+    # example
+    #services = 65
+    #leaseRenewDeadline = 2s
+    #QPS = 65 * (1 / 2s) = 32.5 QPS
 
-# How to calculate: QPS = services * (1 / leaseRenewDeadline)
-# example
-#services = 65
-#leaseRenewDeadline = 2s
-#QPS = 65 * (1 / 2s) = 32.5 QPS
-
-  qps: 5 # default 10
-  burst: 10 # default 20
+    qps: 5 # default 10
+    burst: 10 # default 20
 
 # Enable gateway API and extra params to disable kube-proxy
 gatewayAPI:
-  enabled: true
-  enableAlpn: true
-  enableAppProtocol: true
+    enabled: true
+    enableAlpn: true
+    enableAppProtocol: true
 
-k8sServiceHost: ${API_SERVER_IP} # TODO: fix
-k8sServicePort: ${API_SERVER_PORT}
+k8sServiceHost: auto
+k8sServicePort: 6443
+
+agent: true
+hubble:
+    enabled: true
+
+ingressController.default: true
+ingressController.enabled: true
+ingressController.loadbalancerMode: shared
