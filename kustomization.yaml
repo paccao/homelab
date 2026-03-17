@@ -1,9 +1,11 @@
 ---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
 # k apply -k infra/prometheus/setup first
 
 resources:
-  - infra/metallb/
-  - infra/longhorn/
-  - infra/secrets/sealed-secrets/
-  - infra/prometheus/
-  - infra/cilium/
+    - infra/metallb/
+    - infra/longhorn/
+    - infra/secrets/sealed-secrets/
+    - infra/prometheus/
+    - infra/cilium/ # Template cilium helm first. See infra/cilium/README.md

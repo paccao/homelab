@@ -19,3 +19,5 @@ talosconfig.yaml
 .task/
 .venv/
 Thumbs.db
+
+infra/cilium/secrets/
