@@ -7,6 +7,7 @@ helm template \
   cilium \
   cilium/cilium \
   --version 1.18.4 \
+  --namespace kube-system \
   -f values.yaml \
   --include-crds > secrets/cilium.yaml
 ```
@@ -18,6 +19,7 @@ helm template \
   cilium \
   cilium/cilium \
   --version 1.18.4 \
+  --namespace kube-system \
   -f values.yaml > secrets/cilium.yaml
 ```
 
