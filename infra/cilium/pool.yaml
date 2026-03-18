@@ -11,3 +11,7 @@ spec:
     serviceSelector:
         matchLabels:
             ip-pool: internal
+            "cilium.io/ingress": "true"
+            "k8s-app": "cilium"
+            "app.kubernetes.io/name": "grafana"
+            "app": "longhorn-ui"

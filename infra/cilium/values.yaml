@@ -2,9 +2,6 @@
 operator:
     replicas: 1 # required for single-node cluster, otherwise there is a hostPort conflict.
 
-ipam:
-    mode: kubernetes
-
 securityContext:
     capabilities:
         ciliumAgent:
@@ -31,14 +28,21 @@ cgroup:
 
 # Enable L2 announcements
 kubeProxyReplacement: true
-externalIPs:
-    enabled: true
+# externalIPs:
+#   enabled: true
+
+# ipam:
+#   mode: kubernetes
+devices: enp1s0
 
 l2announcements:
     enabled: true
     leaseDuration: 10s
     leaseRenewDeadline: 5s
     leaseRetryPeriod: 1s
+
+l2NeighDiscovery:
+    enabled: true
 
 k8sClientRateLimit: # Client rate limits to prevent flooding the K8s API
     # How to calculate: QPS = services * (1 / leaseRenewDeadline)
