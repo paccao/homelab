@@ -127,6 +127,13 @@ talosctl gen config \
     --config-patch @cilium-patch.yaml
 ```
 
+### Restart cilium
+
+```bash
+kubectl -n kube-system rollout restart deployment/cilium-operator
+kubectl -n kube-system rollout restart ds/cilium
+```
+
 ## Services to consider
 
 - Local LLM like Qwen / Glm 4.5 air / Claude Sonnet 4.5 Thinking. Requirements: 1 or more GPUs with 24GB+ VRAM (A100, H100, 3090, etc.)

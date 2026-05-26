@@ -2,16 +2,16 @@
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
-    name: internal-pool
-    namespace: kube-system
+  name: internal-pool
+  namespace: kube-system
 spec:
-    blocks:
-        - start: 192.168.30.10
-          stop: 192.168.30.110
-    serviceSelector:
-        matchLabels:
-            ip-pool: internal
-            "cilium.io/ingress": "true"
-            "k8s-app": "cilium"
-            "app.kubernetes.io/name": "grafana"
-            "app": "longhorn-ui"
+  blocks:
+    - start: 192.168.30.10
+      stop: 192.168.30.110
+  serviceSelector:
+    matchLabels:
+      pool: internal
+      "cilium.io/ingress": "true"
+      "k8s-app": "cilium"
+      "app.kubernetes.io/name": "grafana"
+      "app": "longhorn-ui"

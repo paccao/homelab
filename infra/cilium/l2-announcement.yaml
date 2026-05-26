@@ -1,17 +1,13 @@
 apiVersion: cilium.io/v2alpha1
 kind: CiliumL2AnnouncementPolicy
 metadata:
-    name: l2-announcement-policy
-    namespace: kube-system
+  name: l2-announcement-policy
+  namespace: kube-system
 spec:
-    externalIPs: true
-    loadBalancerIPs: true
-    interfaces:
-        - enp1s0
-    serviceSelector:
-        matchLabels:
-            ip-pool: internal
-    nodeSelector:
-        matchExpressions:
-            - key: node-role.kubernetes.io/control-plane
-              operator: Exists # TODO: Change to DoesNotExist later. We should not expose lb on the control plane, its a security issue
+  externalIPs: true
+  loadBalancerIPs: true
+
+  nodeSelector:
+    matchExpressions:
+      - key: node-role.kubernetes.io/control-plane
+        operator: Exists # TODO: Change to DoesNotExist later. We should not expose lb on the control plane, its a security issue
