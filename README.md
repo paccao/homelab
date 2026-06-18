@@ -97,6 +97,8 @@ Verify with `talosctl get extensions` after the node is up and running again
 
 [Useful article](https://phin3has.blog/posts/talos-longhorn/)
 
+[Longhorn StorageClass parameters](https://longhorn.io/docs/1.12.0/references/storage-class-parameters/)
+
 [Setting a backup target for longhorn](https://longhorn.io/docs/1.12.0/snapshots-and-backups/backup-and-restore/set-backup-target/#default-backup-target)
 
 Todo: Plan is to set up a backup target locally on the cluster with MinIO S3 aswell as an off-shore backup in the futureTM.
