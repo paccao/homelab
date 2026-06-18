@@ -1,4 +1,5 @@
 ---
 resources:
-- deployment.yaml
-#- pvc.yaml
+  #- namespace.yaml
+  - deployment.yaml
+  - backup-target.yaml

@@ -95,6 +95,12 @@ Verify with `talosctl get extensions` after the node is up and running again
 
 **Be careful with kernel upgrades** - make sure backups work.
 
+[Useful article](https://phin3has.blog/posts/talos-longhorn/)
+
+[Setting a backup target for longhorn](https://longhorn.io/docs/1.12.0/snapshots-and-backups/backup-and-restore/set-backup-target/#default-backup-target)
+
+Todo: Plan is to set up a backup target locally on the cluster with MinIO S3 aswell as an off-shore backup in the futureTM.
+
 ## Backups and Disaster recovery plan
 
 Take regular backups and test restoring backups in a local k8s cluster
