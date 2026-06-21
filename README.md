@@ -164,6 +164,14 @@ Take regular backups and test restoring backups in a local k8s cluster
 
 https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-a-backup/#incremental-backup
 
+## Sops
+
+Use sops to encrypt secrets to store in git.
+
+[Setup sops](https://budimanjojo.github.io/talhelper/latest/guides/#configuring-sops-for-talhelper)
+
+[How to use sops in manifests and patches](https://budimanjojo.github.io/talhelper/latest/guides/#using-sops-encrypted-files-in-manifests-and-patches)
+
 ## Sealed secrets
 
 Sealing a secret:
