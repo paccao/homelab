@@ -4,3 +4,4 @@ homelab-pi-worker-1.yaml
 homelab-pi-worker-2.yaml
 homelab-pi-worker-3.yaml
 talosconfig
+homelab-nuc-lab-1.yaml
