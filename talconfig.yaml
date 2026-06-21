@@ -56,6 +56,7 @@ patches:
         rbac: true # Enable role-based access control (RBAC).
         apidCheckExtKeyUsage: true # Enable checks for extended key usage of client certificates in apid.
       sysctls:
+        # Longhorn requires this
         vm.nr_hugepages: "1024"
       kernel:
         modules:
@@ -63,7 +64,7 @@ patches:
           - name: nvme_tcp
           - name: vfio_pci
     cluster:
-      # Cilium cni
+      # Cilium requires this
       network:
         cni:
             name: none
