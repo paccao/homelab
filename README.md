@@ -168,6 +168,10 @@ https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-
 
 Use sops to encrypt secrets to store in git.
 
+```sh
+sops -e -i <file>
+```
+
 [Setup sops](https://budimanjojo.github.io/talhelper/latest/guides/#configuring-sops-for-talhelper)
 
 [How to use sops in manifests and patches](https://budimanjojo.github.io/talhelper/latest/guides/#using-sops-encrypted-files-in-manifests-and-patches)
