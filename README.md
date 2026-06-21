@@ -164,6 +164,14 @@ Take regular backups and test restoring backups in a local k8s cluster
 
 https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-a-backup/#incremental-backup
 
+## Talhelper
+
+[docs](https://budimanjojo.github.io/talhelper/latest/getting-started/)
+
+> Do not update or change your talsecret.sops.yaml file once you have a working cluster unless you want to recreate a new cluster or know what you're doing as you will break the cluster and lose access to it.
+
+> Running talhelper genconfig will request a brand new talosconfig that is valid for 365 days since the time you run the command. This means the content of the file will be different everytime. This is the equivalent to [Generating new client configuration](https://docs.siderolabs.com/talos/v1.13/security/cert-management#generating-new-client-configuration) that you can use to re-request a new client configuration.
+
 ## Sops
 
 Use sops to encrypt secrets to store in git.
