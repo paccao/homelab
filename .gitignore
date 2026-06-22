@@ -14,6 +14,7 @@
 **/talos/worker.yaml
 kubeconfig.yaml
 talosconfig.yaml
+talsecret.yaml
 # Misc.
 .private/
 .task/

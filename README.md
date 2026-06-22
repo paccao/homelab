@@ -177,7 +177,10 @@ https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-
 Use sops to encrypt secrets to store in git.
 
 ```sh
-sops -e -i <file>
+sops -e talsecret.yaml > talsecret.sops.yaml
+
+# Keep unencrypted file in talsecret so it is ignored by git.
+sops -d talsecret.sops.yaml > talsecret.yaml
 ```
 
 [Setup sops](https://budimanjojo.github.io/talhelper/latest/guides/#configuring-sops-for-talhelper)
