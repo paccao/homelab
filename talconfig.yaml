@@ -14,6 +14,7 @@ nodes:
     ipAddress: 192.168.30.202
     controlPlane: true
     installDisk: /dev/nvme0n1
+    talosImageURL: ghcr.io/johnlaur/talos-builder/installer:v1.13.2
     patches:
       - |-
         machine:
@@ -23,14 +24,17 @@ nodes:
     ipAddress: 192.168.30.205
     controlPlane: false
     installDisk: /dev/nvme0n1
+    talosImageURL: ghcr.io/johnlaur/talos-builder/installer:v1.13.2
   - hostname: pi-worker-2
     ipAddress: 192.168.30.206
     controlPlane: false
     installDisk: /dev/nvme0n1
+    talosImageURL: ghcr.io/johnlaur/talos-builder/installer:v1.13.2
   - hostname: pi-worker-3
     ipAddress: 192.168.30.207
     controlPlane: false
     installDisk: /dev/nvme0n1
+    talosImageURL: ghcr.io/johnlaur/talos-builder/installer:v1.13.2
 controlPlane:
   nodeLabels:
     node.kubernetes.io/exclude-from-external-load-balancers: ""
