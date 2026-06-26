@@ -15,6 +15,7 @@
 kubeconfig.yaml
 talosconfig.yaml
 talsecret.yaml
+secrets.yaml
 # Misc.
 .private/
 .task/

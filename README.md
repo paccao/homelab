@@ -45,10 +45,25 @@ graph TD
     B -->|App of Apps| G[Applications]
 ```
 
-## Security
+## Bootstrapping - setting up cluster
 
-Scan cluster for with [kubescape](https://github.com/kubescape/kubescape) to detect vulnerabilities and misconfiguration.
+[Guide](kubernetes/bootstrap/talos/README.md)
 
+IP plan before Cilium LB-IPAM is setup:
+
+```
+192.168.30.1                     - Gateway
+192.168.30.2                     - DNS server
+192.168.30.10                    - nuc-controlplane-1
+192.168.30.12                    - pi5-controlplane-2
+192.168.30.14                    - pi5-controlplane-3
+192.168.30.16                    - pi5-worker-1
+192.168.30.18                    - pi5-worker-2
+192.168.30.20                    - pi4b-worker-3
+192.168.30.100                   - Virtual IP for API server
+192.168.30.240 -> 192.168.30.250 - DHCP
+192.168.30.255                   - Broadcast addr
+```
 ---
 
 ## Asdf package manager
@@ -74,12 +89,21 @@ asdf install
 
 # Other information:
 
+## Search for a helm release
+
+[https://kubesearch.dev/](https://kubesearch.dev/)
+
+## Security
+
+Scan cluster for with [kubescape](https://github.com/kubescape/kubescape) to detect vulnerabilities and misconfiguration.
+
 ## Monitoring CPU temps
 
 https://blog.medinvention.dev/k8s-cpu-temperature-fan-monitoring-for-rpi/
 
-https://github.com/mmohamed/k8s-raspberry/blob/66c9a74d7155f1766ea4dfe143b45a119bb28678/s2i/k8s-monitoring/api.yaml#L177
+[Credit](https://github.com/mmohamed/k8s-raspberry/blob/66c9a74d7155f1766ea4dfe143b45a119bb28678/s2i/k8s-monitoring/api.yaml#L177
 
+```yaml
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -123,7 +147,7 @@ spec:
           done;
         imagePullPolicy: IfNotPresent
 
----
+```
 
 ### How to generate system extensions with TalOS
 
