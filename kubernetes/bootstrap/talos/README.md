@@ -33,11 +33,11 @@ sops -e secrets.yaml > secrets.sops.yaml
 ### Generate config files
 
 ```sh
-sops -d talsecret.sops.yaml > talsecret.yaml
+sops -d talsecret.sops.yaml > secrets.yaml
 talhelper genconfig --secret-file secrets.yaml
 
 # Cleanup
-rm talsecret.yaml
+rm secrets.yaml
 ```
 
 Find your nodes ip if its assigned by DHCP:
