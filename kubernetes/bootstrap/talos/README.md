@@ -33,7 +33,7 @@ sops -e secrets.yaml > secrets.sops.yaml
 ### Generate config files
 
 ```sh
-sops -d talsecret.sops.yaml > secrets.yaml
+sops -d secrets.sops.yaml > secrets.yaml
 talhelper genconfig --secret-file secrets.yaml
 
 # Cleanup
