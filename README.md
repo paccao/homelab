@@ -7,7 +7,7 @@
 
 A bare-metal Kubernetes cluster running on TalOS Linux.
 
-In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasoning for design decision I take on my kubernetes cluster.
+In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasonings for decisions I take in the cluster.
 
 ## Infrastructure Overview
 
