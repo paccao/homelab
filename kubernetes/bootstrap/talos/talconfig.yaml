@@ -24,6 +24,9 @@ nodes:
             gateway: 192.168.30.1
         vip:
           ip: "192.168.30.100"
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
   - hostname: pi5-controlplane-2
     ipAddress: 192.168.30.12
     controlPlane: true
@@ -52,11 +55,9 @@ nodes:
             gateway: 192.168.30.1
         vip:
           ip: "192.168.30.100"
-    patches:
-      - |-
-        machine:
-          install:
-            wipe: true
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
   # - hostname: pi5-controlplane-3
   #   ipAddress: 192.168.30.14
   #   controlPlane: true
@@ -85,6 +86,9 @@ nodes:
   #           gateway: 192.168.30.1
   #       vip:
   #         ip: "192.168.30.100"
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
   # - hostname: pi5-worker-1
   #   ipAddress: 192.168.30.16
   #   controlPlane: false
@@ -113,6 +117,9 @@ nodes:
   #           gateway: 192.168.30.1
   #       vip:
   #         ip: "192.168.30.100"
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
   # - hostname: pi5-worker-2
   #   ipAddress: 192.168.30.18
   #   controlPlane: false
@@ -141,6 +148,9 @@ nodes:
   #           gateway: 192.168.30.1
   #       vip:
   #         ip: "192.168.30.100"
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
   # - hostname: pi4b-worker-3
   #   ipAddress: 192.168.30.20
   #   controlPlane: false
@@ -157,6 +167,9 @@ nodes:
   #      routes:
   #        - network: 0.0.0.0/0
   #          gateway: 192.168.30.1
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
 controlPlane:
   nodeLabels:
     node.kubernetes.io/exclude-from-external-load-balancers: ""
