@@ -16,6 +16,27 @@ Replace the IDs in `talconfig.yaml` for each respective node.
 talosImageURL: factory.talos.dev/installer/<id>
 ```
 
+### Download image (for flashing onto memory cards)
+
+```sh
+# --- For rpi5 ---
+# Get factory.talos.dev/image/<id>/... from above
+
+# Fish shell
+set -x SCHEMATIC_ID # <id>
+set -x TALOS_INSTALL_VERSION # <version>
+set -x TALOSIMG_INSTALL_PATH ~/Downloads/images/
+
+curl -fL "https://factory.talos.dev/image/$SCHEMATIC_ID/$TALOS_INSTALL_VERSION/metal-arm64.raw.xz" -o "$TALOSIMG_INSTALL_PATH/talos-$TALOS_INSTALL_VERSION-metal-arm64.raw.xz"
+unxz "$TALOSIMG_INSTALL_PATH/talos-$TALOS_INSTALL_VERSION-metal-arm64.raw.xz"
+
+# Find device to flash talos with, replace of=/dev/sdX below
+lsblk
+
+# Overwrite device drive with talos
+sudo dd if="$TALOSIMG_INSTALL_PATH/talos-$TALOS_INSTALL_VERSION-metal-arm64.raw" of=/dev/sda bs=4M status=progress conv=fsync
+```
+
 ### Generate talos secrets
 
 You can add ` --talos-version <version>` for a specific version:
