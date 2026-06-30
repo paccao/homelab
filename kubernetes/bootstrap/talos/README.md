@@ -37,6 +37,51 @@ lsblk
 sudo dd if="$TALOSIMG_INSTALL_PATH/talos-$TALOS_INSTALL_VERSION-metal-arm64.raw" of=/dev/sda bs=4M status=progress conv=fsync
 ```
 
+### Find your interfaces
+
+Connect the memory card / usb stick with talos to the device you want to install on.
+
+Find your node ip if its assigned by DHCP:
+
+```sh
+nmap -sn 192.168.30.0/24
+```
+
+Talos will boot up in maintenance mode, verify with `talosctl get machinestatus -n <ip> --insecure`
+
+Find your network interface and modify `talconfig.yaml` for each node separately.
+
+```sh
+talosctl -n <ip> get links --insecure
+talosctl -n <ip> get addresses --insecure
+```
+
+Update `talconfig.yaml` for each node:
+
+```yaml
+nodes:
+  networkInterfaces:
+    - deviceSelector:
+        hardwareAddr: # MAC address of the interface, its different for each node
+```
+
+Find your device names
+
+```sh
+talosctl -n <ip> get disks --insecure
+```
+
+Update config:
+
+```yaml
+nodes:
+  installDisk: /dev/<device> # microSD card
+  volumes:
+  - provisioning:
+      diskSelector:
+        match: "disk.model.startsWith('<DISKS.MODEL>')" # NVMe
+```
+
 ### Generate talos secrets
 
 You can add ` --talos-version <version>` for a specific version:
@@ -59,12 +104,6 @@ talhelper genconfig --secret-file secrets.yaml
 
 # Cleanup
 rm secrets.yaml
-```
-
-Find your nodes ip if its assigned by DHCP:
-
-```sh
-nmap -sn 192.168.30.0/24
 ```
 
 Then apply each config to the respective node:
