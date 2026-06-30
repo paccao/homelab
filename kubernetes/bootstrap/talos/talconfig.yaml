@@ -46,7 +46,7 @@ nodes:
           grow: true # Volume grows to disk max size if possible
     networkInterfaces:
       - deviceSelector:
-          hardwareAddr: 48:21:0b:6f:f4:ca # enp1s0
+          hardwareAddr: 88:a2:9e:4c:0a:46 # end0
         dhcp: false
         addresses:
           - 192.168.30.12/24 # Static IP
