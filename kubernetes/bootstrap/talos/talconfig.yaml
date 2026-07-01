@@ -58,6 +58,37 @@ nodes:
     nameservers:
       - 1.1.1.1
       - 8.8.8.8
+  - hostname: pi5-worker-2
+    ipAddress: 192.168.30.18
+    controlPlane: false
+    installDisk: /dev/mmcblk0 # microSD card
+    talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+    machineSpec:
+      secureboot: false
+    volumes:
+      - name: EPHEMERAL
+        # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+        # This means all the writeable directories are under this partition:
+        # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+        provisioning:
+          diskSelector:
+            match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+          minSize: 100GiB
+          grow: true # Volume grows to disk max size if possible
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: 88:a2:9e:4c:0a:e5 # end0
+        dhcp: false
+        addresses:
+          - 192.168.30.18/24 # Static IP
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.30.1
+        vip:
+          ip: "192.168.30.100"
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
   # - hostname: pi5-controlplane-3
   #   ipAddress: 192.168.30.14
   #   controlPlane: true
@@ -77,7 +108,7 @@ nodes:
   #         grow: true # Volume grows to disk max size if possible
   #   networkInterfaces:
   #     - deviceSelector:
-  #         hardwareAddr: 48:21:0b:6f:f4:ca # enp1s0
+  #         hardwareAddr:  # end0
   #       dhcp: false
   #       addresses:
   #         - 192.168.30.14/24 # Static IP
@@ -108,7 +139,7 @@ nodes:
   #         grow: true # Volume grows to disk max size if possible
   #   networkInterfaces:
   #     - deviceSelector:
-  #         hardwareAddr: 48:21:0b:6f:f4:ca # enp1s0
+  #         hardwareAddr:  # end0
   #       dhcp: false
   #       addresses:
   #         - 192.168.30.16/24 # Static IP
@@ -120,37 +151,7 @@ nodes:
   #  nameservers:
   #    - 1.1.1.1
   #    - 8.8.8.8
-  # - hostname: pi5-worker-2
-  #   ipAddress: 192.168.30.18
-  #   controlPlane: false
-  #   installDisk: /dev/ # microSD card
-  #   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
-  #   machineSpec:
-  #     secureboot: false
-  #   volumes:
-  #     - name: EPHEMERAL
-  #       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
-  #       # This means all the writeable directories are under this partition:
-  #       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
-  #       provisioning:
-  #         diskSelector:
-  #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
-  #         minSize: 100GiB
-  #         grow: true # Volume grows to disk max size if possible
-  #   networkInterfaces:
-  #     - deviceSelector:
-  #         hardwareAddr: 48:21:0b:6f:f4:ca # enp1s0
-  #       dhcp: false
-  #       addresses:
-  #         - 192.168.30.18/24 # Static IP
-  #       routes:
-  #         - network: 0.0.0.0/0
-  #           gateway: 192.168.30.1
-  #       vip:
-  #         ip: "192.168.30.100"
-  #  nameservers:
-  #    - 1.1.1.1
-  #    - 8.8.8.8
+
   # - hostname: pi4b-worker-3
   #   ipAddress: 192.168.30.20
   #   controlPlane: false
@@ -160,7 +161,7 @@ nodes:
   #     secureboot: false
   #  networkInterfaces:
   #    - deviceSelector:
-  #        hardwareAddr: 48:21:0b:6f:f4:ca # enp1s0
+  #        hardwareAddr: #
   #      dhcp: false
   #      addresses:
   #        - 192.168.30.20/24 # Static IP
