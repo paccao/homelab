@@ -7,7 +7,7 @@
 
 A bare-metal Kubernetes cluster running on TalOS Linux.
 
-In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasoning for design decision I take on my kubernetes cluster.
+In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasonings for decisions I take in the cluster.
 
 ## Infrastructure Overview
 
@@ -45,10 +45,25 @@ graph TD
     B -->|App of Apps| G[Applications]
 ```
 
-## Security
+## Bootstrapping - setting up cluster
 
-Scan cluster for with [kubescape](https://github.com/kubescape/kubescape) to detect vulnerabilities and misconfiguration.
+[Guide](kubernetes/bootstrap/talos/README.md)
 
+IP plan before Cilium LB-IPAM is setup:
+
+```
+192.168.30.1                     - Gateway
+192.168.30.2                     - DNS server
+192.168.30.10                    - nuc-controlplane-1
+192.168.30.12                    - pi5-controlplane-2
+192.168.30.14                    - pi5-controlplane-3
+192.168.30.16                    - pi5-worker-1
+192.168.30.18                    - pi5-worker-2
+192.168.30.20                    - pi4b-worker-3
+192.168.30.100                   - Virtual IP for API server
+192.168.30.240 -> 192.168.30.250 - DHCP
+192.168.30.255                   - Broadcast addr
+```
 ---
 
 ## Asdf package manager
@@ -74,15 +89,75 @@ asdf install
 
 # Other information:
 
+## Search for a helm release
+
+[https://kubesearch.dev/](https://kubesearch.dev/)
+
+## Security
+
+Scan cluster for with [kubescape](https://github.com/kubescape/kubescape) to detect vulnerabilities and misconfiguration.
+
+## Monitoring CPU temps
+
+https://blog.medinvention.dev/k8s-cpu-temperature-fan-monitoring-for-rpi/
+
+[Credit](https://github.com/mmohamed/k8s-raspberry/blob/66c9a74d7155f1766ea4dfe143b45a119bb28678/s2i/k8s-monitoring/api.yaml#L177
+
+```yaml
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: monitoring-agent
+  namespace: monitoring
+  labels:
+    k8s-app: monitoring-agent
+spec:
+  selector:
+    matchLabels:
+      name: monitoring-agent
+  template:
+    metadata:
+      labels:
+        name: monitoring-agent
+        commit: '{{commit}}'
+    spec:
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: monitoring-agent
+        image: busybox
+        env:
+          - name: NODE
+            valueFrom:
+              fieldRef:
+                fieldPath: spec.nodeName
+          - name: SERVER
+            value: http://monitoring-service.monitoring.svc.cluster.local/k8s/collect/{{token}}/temperature
+        command: [ "sh", "-c"]
+        args:
+        - while true; do
+            TEMP=$(cat /sys/class/thermal/thermal_zone0/temp);
+            URL="$SERVER?node=$NODE&value=$TEMP";
+            wget -qO- $URL;
+            sleep 5;
+          done;
+        imagePullPolicy: IfNotPresent
+
+```
+
 ### How to generate system extensions with TalOS
 
-https://docs.siderolabs.com/talos/v1.11/platform-specific-installations/boot-assets#example%3A-bare-metal-with-image-factory
+https://docs.siderolabs.com/talos/v1.13/platform-specific-installations/boot-assets#example%3A-bare-metal-with-image-factory
 
 ```bash
 curl -X POST --data-binary @./longhorn/system-extensions.yaml https://factory.talos.dev/schematics
 
 talosctl upgrade --image \
-factory.talos.dev/metal-installer/<schematic_id>:v1.11.3
+factory.talos.dev/metal-installer/<schematic_id>:v1.13.4
 ```
 
 Verify with `talosctl get extensions` after the node is up and running again
@@ -112,6 +187,29 @@ Take regular backups and test restoring backups in a local k8s cluster
 **Todo:** Set up backups and DR plan
 
 https://longhorn.io/docs/1.10.0/snapshots-and-backups/backup-and-restore/create-a-backup/#incremental-backup
+
+## Talhelper
+
+[docs](https://budimanjojo.github.io/talhelper/latest/getting-started/)
+
+> Do not update or change your talsecret.sops.yaml file once you have a working cluster unless you want to recreate a new cluster or know what you're doing as you will break the cluster and lose access to it.
+
+> Running talhelper genconfig will request a brand new talosconfig that is valid for 365 days since the time you run the command. This means the content of the file will be different everytime. This is the equivalent to [Generating new client configuration](https://docs.siderolabs.com/talos/v1.13/security/cert-management#generating-new-client-configuration) that you can use to re-request a new client configuration.
+
+## Sops
+
+Use sops to encrypt secrets to store in git.
+
+```sh
+sops -e talsecret.yaml > talsecret.sops.yaml
+
+# Keep unencrypted file in talsecret so it is ignored by git.
+sops -d talsecret.sops.yaml > talsecret.yaml
+```
+
+[Setup sops](https://budimanjojo.github.io/talhelper/latest/guides/#configuring-sops-for-talhelper)
+
+[How to use sops in manifests and patches](https://budimanjojo.github.io/talhelper/latest/guides/#using-sops-encrypted-files-in-manifests-and-patches)
 
 ## Sealed secrets
 

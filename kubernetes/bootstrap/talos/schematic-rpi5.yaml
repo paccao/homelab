@@ -1,0 +1,10 @@
+overlay:
+  image: siderolabs/sbc-raspberrypi
+  name: rpi_5
+  options:
+    configTxtAppend: dtoverlay=pwm-gpio-fan,nvme,pciex1_gen=3,disable-bt-pi5,disable-wifi-pi5
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/iscsi-tools
+      - siderolabs/util-linux-tools

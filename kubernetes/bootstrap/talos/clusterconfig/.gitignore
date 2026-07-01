@@ -1,0 +1,4 @@
+talosconfig
+homelab-nuc-controlplane-1.yaml
+homelab-pi5-controlplane-2.yaml
+homelab-pi5-worker-2.yaml

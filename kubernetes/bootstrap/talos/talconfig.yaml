@@ -1,0 +1,226 @@
+---
+clusterName: homelab
+talosVersion: v1.13.5
+kubernetesVersion: v1.34.1
+endpoint: https://192.168.30.100:6443
+domain: k8s.local
+allowSchedulingOnControlPlanes: false
+nodes:
+  - hostname: nuc-controlplane-1
+    ipAddress: 192.168.30.10
+    controlPlane: true
+    installDisk: /dev/nvme0n1
+    talosImageURL: factory.talos.dev/installer/613e1592b2da41ae5e265e8789429f22e121aab91cb4deb6bc3c0b6262961245
+    machineSpec:
+      secureboot: false
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: 48:21:0b:6f:f4:ca # enp1s0
+        dhcp: false
+        addresses:
+          - 192.168.30.10/24 # Static IP
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.30.1
+        vip:
+          ip: "192.168.30.100"
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+  - hostname: pi5-controlplane-2
+    ipAddress: 192.168.30.12
+    controlPlane: true
+    installDisk: /dev/mmcblk0 # microSD card
+    talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+    machineSpec:
+      secureboot: false
+    volumes:
+      - name: EPHEMERAL
+        # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+        # This means all the writeable directories are under this partition:
+        # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+        provisioning:
+          diskSelector:
+            match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+          minSize: 100GiB
+          grow: true # Volume grows to disk max size if possible
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: 88:a2:9e:4c:0a:46 # end0
+        dhcp: false
+        addresses:
+          - 192.168.30.12/24 # Static IP
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.30.1
+        vip:
+          ip: "192.168.30.100"
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+  - hostname: pi5-worker-2
+    ipAddress: 192.168.30.18
+    controlPlane: false
+    installDisk: /dev/mmcblk0 # microSD card
+    talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+    machineSpec:
+      secureboot: false
+    volumes:
+      - name: EPHEMERAL
+        # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+        # This means all the writeable directories are under this partition:
+        # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+        provisioning:
+          diskSelector:
+            match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+          minSize: 100GiB
+          grow: true # Volume grows to disk max size if possible
+    networkInterfaces:
+      - deviceSelector:
+          hardwareAddr: 88:a2:9e:4c:0a:e5 # end0
+        dhcp: false
+        addresses:
+          - 192.168.30.18/24 # Static IP
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.30.1
+        vip:
+          ip: "192.168.30.100"
+    nameservers:
+      - 1.1.1.1
+      - 8.8.8.8
+  # - hostname: pi5-controlplane-3
+  #   ipAddress: 192.168.30.14
+  #   controlPlane: true
+  #   installDisk: /dev/ # microSD card
+  #   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+  #   machineSpec:
+  #     secureboot: false
+  #   volumes:
+  #     - name: EPHEMERAL
+  #       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+  #       # This means all the writeable directories are under this partition:
+  #       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+  #       provisioning:
+  #         diskSelector:
+  #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+  #         minSize: 100GiB
+  #         grow: true # Volume grows to disk max size if possible
+  #   networkInterfaces:
+  #     - deviceSelector:
+  #         hardwareAddr:  # end0
+  #       dhcp: false
+  #       addresses:
+  #         - 192.168.30.14/24 # Static IP
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.30.1
+  #       vip:
+  #         ip: "192.168.30.100"
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
+  # - hostname: pi5-worker-1
+  #   ipAddress: 192.168.30.16
+  #   controlPlane: false
+  #   installDisk: /dev/ # microSD card
+  #   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+  #   machineSpec:
+  #     secureboot: false
+  #   volumes:
+  #     - name: EPHEMERAL
+  #       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+  #       # This means all the writeable directories are under this partition:
+  #       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+  #       provisioning:
+  #         diskSelector:
+  #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+  #         minSize: 100GiB
+  #         grow: true # Volume grows to disk max size if possible
+  #   networkInterfaces:
+  #     - deviceSelector:
+  #         hardwareAddr:  # end0
+  #       dhcp: false
+  #       addresses:
+  #         - 192.168.30.16/24 # Static IP
+  #       routes:
+  #         - network: 0.0.0.0/0
+  #           gateway: 192.168.30.1
+  #       vip:
+  #         ip: "192.168.30.100"
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
+
+  # - hostname: pi4b-worker-3
+  #   ipAddress: 192.168.30.20
+  #   controlPlane: false
+  #   installDisk:
+  #   talosImageURL:
+  #   machineSpec:
+  #     secureboot: false
+  #  networkInterfaces:
+  #    - deviceSelector:
+  #        hardwareAddr: #
+  #      dhcp: false
+  #      addresses:
+  #        - 192.168.30.20/24 # Static IP
+  #      routes:
+  #        - network: 0.0.0.0/0
+  #          gateway: 192.168.30.1
+  #  nameservers:
+  #    - 1.1.1.1
+  #    - 8.8.8.8
+controlPlane:
+  nodeLabels:
+    node.kubernetes.io/exclude-from-external-load-balancers: ""
+
+patches:
+  - |-
+    machine:
+      # time:
+      #   disabled: false
+      #   servers: # ntp.se
+      #     - 194.58.200.0
+      #     - 194.58.200.1
+      #     - 194.58.200.2
+      #     - 194.58.200.3
+      #     - 194.58.200.4
+      #     - 194.58.200.5
+      #     - 194.58.200.6
+      #     - 194.58.200.7
+      kubelet:
+        defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
+        disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
+        extraMounts:
+          - destination: /var/lib/longhorn
+            type: bind
+            source: /var/lib/longhorn
+            options:
+              - bind
+              - rshared
+              - rw
+        extraConfig:
+          imageMaximumGCAge: 168h # Kubelet garbage collects local images after one week
+        nodeIP:
+          validSubnets: # https://oneuptime.com/blog/post/2026-03-03-configure-kubelet-node-ip-in-talos-linux/view
+            - 192.168.30.0/24
+      features:
+        rbac: true # Enable role-based access control (RBAC).
+        apidCheckExtKeyUsage: true # Enable checks for extended key usage of client certificates in apid.
+      sysctls:
+        # Longhorn requires this
+        vm.nr_hugepages: "1024"
+      kernel:
+        modules:
+          # longhorn V2 data engine requirements
+          - name: nvme_tcp
+          - name: vfio_pci
+    cluster:
+      # Cilium requires this
+      network:
+        cni:
+            name: none
+      # disable kube-proxy  - required for Cilium with support for GatewayAPI
+      proxy:
+        disabled: true
