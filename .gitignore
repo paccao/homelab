@@ -10,8 +10,6 @@
 /cluster.yaml
 /nodes.yaml
 # Kubernetes
-**/talos/controlplane.yaml
-**/talos/worker.yaml
 kubeconfig.yaml
 talosconfig.yaml
 talsecret.yaml
