@@ -7,4 +7,3 @@ metadata:
   namespace: flux-system
 data:
   CLUSTER_DOMAIN: kubes.cloud
-  PERSONAL_DOMAIN: freek.cloud
