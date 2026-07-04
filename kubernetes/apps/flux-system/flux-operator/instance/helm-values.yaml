@@ -1,0 +1,24 @@
+---
+instance:
+  cluster:
+    networkPolicy: false
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+  sync:
+    kind: GitRepository
+    url: "https://github.com/fhoekstra/home-ops.git"
+    ref: "refs/heads/main"
+    path: kubernetes/flux/cluster
+  kustomize:
+    patches:
+      - # Cancel health checks on new Kustomizations revisions
+        patch: |-
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --feature-gates=CancelHealthCheckOnNewRevision=true
+        target:
+          kind: Deployment
+          name: kustomize-controller
