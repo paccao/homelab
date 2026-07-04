@@ -43,6 +43,14 @@ graph TD
     B -->|App of Apps| G[Applications]
 ```
 
+## Dependencies
+
+```sh
+pacman -S kubectl helm helmfile kustomize talosctl talhelper sops age cilium-cli
+```
+
+[flux-operator](https://github.com/controlplaneio-fluxcd/flux-operator/releases)
+
 ## Bootstrap cluster
 
 [Guide](kubernetes/bootstrap/talos/README.md)
@@ -62,30 +70,8 @@ My IP plan before Cilium LB-IPAM is setup:
 192.168.30.240 -> 192.168.30.250 - DHCP
 192.168.30.255                   - Broadcast addr
 ```
----
-
-## Asdf package manager
-This repo use the ASDF package manager. You can use it to easily installed the CLI tools needed for this repo, or you can download them another way, check [.tool-versions](./.tool-versions).
-
-Install it with your favourite package manager, then add the following repos:
-
-```bash
-# Add repos
-asdf plugin-add kubeseal https://github.com/stefansedich/asdf-kubeseal &&
-asdf plugin-add cilium-cli https://github.com/carnei-ro/asdf-cilium-cli.git &&
-asdf plugin-add cilium-hubble https://github.com/NitriKx/asdf-cilium-hubble.git &&
-asdf plugin-add helm https://github.com/Antiarchitect/asdf-helm.git &&
-asdf plugin add k9s https://github.com/looztra/asdf-k9s.git &&
-asdf plugin-add flux2 https://github.com/tablexi/asdf-flux2.git &&
-asdf plugin-add kustomize https://github.com/Banno/asdf-kustomize.git &&
-
-# Install
-asdf install
-```
 
 ---
-
-# Other information:
 
 ## Search for a helm release
 
@@ -215,20 +201,6 @@ Sealing a secret:
 
 ```bash
 kubectl create secret generic test --dry-run=client --from-literal=key=value -o yaml | kubeseal --controller-namespace sealed-secrets --format yaml -w sealed-secret.yaml
-```
-
-# How to install cilium
-
-Follow this [guide](https://siderolabs-fe86397c.mintlify.app/kubernetes-guides/cni/deploying-cilium).
-
-I disabled the kube-proxy, which allows for use of the GatewayAPI for ingress later.
-
-Patch the talos cluster with /infra/talos/talos/cilium-patch.yaml
-
-```bash
-talosctl gen config \
-    my-cluster https://mycluster.local:6443 \
-    --config-patch @cilium-patch.yaml
 ```
 
 ## Services to consider
