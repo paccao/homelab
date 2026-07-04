@@ -6,5 +6,5 @@ resources:
   - ./grafana.yaml
   - ./httproute.yaml
   - ./servicemonitor.yaml
-  - ./datasource-alerts.yaml
-  - ./datasource-metrics.yaml
+  # - ./datasource-alerts.yaml
+  # - ./datasource-metrics.yaml
