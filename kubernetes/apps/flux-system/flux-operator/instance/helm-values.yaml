@@ -9,7 +9,7 @@ instance:
     - notification-controller
   sync:
     kind: GitRepository
-    url: "https://github.com/fhoekstra/home-ops.git"
+    url: "https://codeberg.org/paccao/homelab.git"
     ref: "refs/heads/main"
     path: kubernetes/flux/cluster
   kustomize:
