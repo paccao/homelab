@@ -1,0 +1,21 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ./alert-manager/ks.yaml
+  - ./blackbox-exporter/ks.yaml
+  - ./grafana/ks.yaml
+  - ./prometheus-adapter/ks.yaml
+  - ./prometheus-operator-crds/ks.yaml
+  - ./smartctl-exporter/ks.yaml
+components:
+  - ../../flux/components/namespace
+patches:
+  - # Add the name to the namespace
+    patch: |
+      - op: add
+        path: /metadata/name
+        value: observability
+    target:
+      kind: Namespace
