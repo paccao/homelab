@@ -26,8 +26,8 @@ spec:
   dependsOn:
     - name: grafana
       namespace: flux-system
-    - name: rook-ceph-cluster
-      namespace: flux-system
+    - name: longhorn
+      namespace: longhorn-system
   interval: 1h
   path: ./kubernetes/apps/observability/grafana/instance
   prune: true
