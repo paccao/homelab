@@ -25,7 +25,7 @@ spec:
   interval: 1h
   values:
     prometheus:
-      url: http://vmsingle-vmetrics.observability.svc.cluster.local
+      url: prometheus.k8s.local
       port: 8428
     rules:
       default: false
