@@ -16,6 +16,6 @@ patches:
     patch: |
       - op: add
         path: /metadata/name
-        value: observability
+        value: o11y
     target:
       kind: Namespace

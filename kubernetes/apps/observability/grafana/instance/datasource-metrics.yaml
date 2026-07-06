@@ -13,4 +13,4 @@ spec:
     name: prometheus
     access: proxy
     isDefault: true
-    url: http://vmsingle-vmetrics.observability.svc.cluster.local:8428
+    url: http://vmsingle-vmetrics.o11y.svc.cluster.local:8428

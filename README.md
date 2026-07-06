@@ -22,7 +22,7 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 - **Runtime**: Containerd
 - **CSI**: Longhorn
 - **GitOps Engine**: Flux CD
-- **Observability**: Prometheus, Grafana, Loki
+- **Observability (o11y)**: Prometheus, Grafana, Loki, Alertmanager, smartctl-exporter
 
 ### Network Stack
 - **CNI**: Cilium

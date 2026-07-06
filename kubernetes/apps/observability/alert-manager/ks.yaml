@@ -6,11 +6,11 @@ metadata:
   name: &app alertmanager
   namespace: flux-system
 spec:
-  targetNamespace: observability
+  targetNamespace: o11y
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/observability/alert-manager/manifests
+  path: ./kubernetes/apps/o11y/alert-manager/manifests
   prune: true
   dependsOn:
     - name: vm-k8s-stack

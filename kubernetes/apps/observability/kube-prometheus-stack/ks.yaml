@@ -9,11 +9,11 @@ spec:
     - name: longhorn
       namespace: longhorn-system
   interval: 1h
-  path: ./kubernetes/apps/observability/kube-prometheus-stack/app
+  path: ./kubernetes/apps/o11y/kube-prometheus-stack/app
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: observability
+  targetNamespace: o11y
   wait: false
