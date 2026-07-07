@@ -1,10 +1,17 @@
 ---
-# yaml-language-server: $schema=https://datreeio.github.io/CRDs-catalog/cilium.io/ciliumloadbalancerippool_v2alpha1.json
 apiVersion: cilium.io/v2alpha1
 kind: CiliumLoadBalancerIPPool
 metadata:
-  name: pool
+  name: internal-pool
+  namespace: kube-system
 spec:
-  allowFirstLastIPs: "No"
   blocks:
-    - cidr: "192.168.1.0/24"
+    - start: 192.168.30.110
+      stop: 192.168.30.200
+  # serviceSelector:
+  #   matchLabels:
+  #     ip-pool: internal
+  #     "cilium.io/ingress": "true"
+  #     "k8s-app": "cilium"
+  #     "app.kubernetes.io/name": "grafana"
+  #     "app": "longhorn-ui"

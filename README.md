@@ -67,6 +67,7 @@ My IP plan before Cilium LB-IPAM is setup:
 192.168.30.18                    - pi5-worker-2
 192.168.30.20                    - pi4b-worker-3
 192.168.30.100                   - TalOS VIP
+192.168.30.110 -> 192.168.30.200 - CiliumLoadBalancerIPPool
 192.168.30.240 -> 192.168.30.250 - DHCP
 192.168.30.255                   - Broadcast addr
 ```
