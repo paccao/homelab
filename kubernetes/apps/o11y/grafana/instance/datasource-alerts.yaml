@@ -14,5 +14,5 @@ spec:
     access: proxy
     jsonData:
       implementation: prometheus
-    url: http://alertmanager-vmetrics.o11y.svc.cluster.local:9093
+    url: http://alertmanager-vmetrics.o11y.svc.k8s.local:9093
 ---

@@ -9,7 +9,7 @@
     }
     prometheus :9153
 
-    kubernetes cluster.local in-addr.arpa ip6.arpa {
+    kubernetes k8s.local in-addr.arpa ip6.arpa {
         pods insecure
         fallthrough in-addr.arpa ip6.arpa
         ttl 30
@@ -18,8 +18,8 @@
        max_concurrent 1000
     }
     cache 30 {
-       disable success cluster.local
-       disable denial cluster.local
+       disable success k8s.local
+       disable denial k8s.local
     }
     loop
     reload
