@@ -13,4 +13,4 @@ spec:
     name: prometheus
     access: proxy
     isDefault: true
-    url: http://vmsingle-vmetrics.o11y.svc.k8s.local:8428
+    url: http://prometheus.o11y.svc.${CLUSTER_DOMAIN}:8428

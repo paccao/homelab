@@ -13,7 +13,7 @@ spec:
   path: ./kubernetes/apps/o11y/alert-manager/manifests
   prune: true
   dependsOn:
-    - name: vm-k8s-stack
+    - name: kube-prometheus-stack
       namespace: flux-system
   sourceRef:
     kind: GitRepository

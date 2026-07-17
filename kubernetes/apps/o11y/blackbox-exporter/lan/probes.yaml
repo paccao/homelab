@@ -7,7 +7,7 @@ metadata:
 spec:
   module: icmp
   prober:
-    url: blackbox-exporter-lan.o11y.svc.k8s.local:9115
+    url: blackbox-exporter-lan.o11y.svc.${CLUSTER_DOMAIN}:9115
   targets:
     staticConfig:
       static:
@@ -31,7 +31,7 @@ spec:
   jobName: nfs_probe
   module: tcp_connect
   prober:
-    url: blackbox-exporter-lan.o11y.svc.k8s.local:9115
+    url: blackbox-exporter-lan.o11y.svc.${CLUSTER_DOMAIN}:9115
   targets:
     staticConfig:
       static:

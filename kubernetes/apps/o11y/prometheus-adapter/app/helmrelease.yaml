@@ -25,7 +25,7 @@ spec:
   interval: 1h
   values:
     prometheus:
-      url: prometheus.k8s.local
+      url: prometheus.${CLUSTER_DOMAIN}
       port: 8428
     rules:
       default: false

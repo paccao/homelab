@@ -16,12 +16,12 @@ prometheus:
     main: # This generates a gateway API route for prometheus.
       enabled: false
       hostnames:
-        - prometheus.k8s.local
+        - prometheus.${CLUSTER_DOMAIN}
       parentRefs:
         - name: envoy-internal
           namespace: network
   prometheusSpec: # docs: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#prometheusspec
-    externalUrl: https://prometheus.k8s.local
+    externalUrl: https://prometheus.${CLUSTER_DOMAIN}
     podMonitorSelectorNilUsesHelmValues: false # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
     probeSelectorNilUsesHelmValues: false
     ruleSelectorNilUsesHelmValues: false
