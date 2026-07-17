@@ -7,5 +7,5 @@ configMapGenerator:
   - name: kube-prometheus-stack-helm-values
     files:
       - values.yaml=values.yaml
-configurations:
-  - kustomizeconfig.yaml
+# configurations:
+#   - kustomizeconfig.yaml
