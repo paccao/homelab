@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./cilium/ks.yaml
   - ./coredns/ks.yaml
+  - ./spegel/ks.yaml
 components:
   - ../../flux/components/namespace
 patches:
