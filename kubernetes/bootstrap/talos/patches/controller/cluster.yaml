@@ -1,4 +1,13 @@
 cluster:
+  coreDNS:
+    disabled: true
+  # Cilium requires this
+  network:
+    cni:
+        name: none
+  # disable kube-proxy - let Cilium handle it instead
+  proxy:
+    disabled: true
   scheduler:
     config:
       apiVersion: kubescheduler.config.k8s.io/v1
