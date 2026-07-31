@@ -134,19 +134,6 @@ spec:
 
 ```
 
-### How to generate system extensions with TalOS
-
-https://docs.siderolabs.com/talos/v1.13/platform-specific-installations/boot-assets#example%3A-bare-metal-with-image-factory
-
-```bash
-curl -X POST --data-binary @./longhorn/system-extensions.yaml https://factory.talos.dev/schematics
-
-talosctl upgrade --image \
-factory.talos.dev/metal-installer/<schematic_id>:v1.13.4
-```
-
-Verify with `talosctl get extensions` after the node is up and running again
-
 ## Longhorn
 
 [Best practices with longhorn](https://longhorn.io/docs/1.10.0/best-practices/)
@@ -195,14 +182,6 @@ sops -d talsecret.sops.yaml > talsecret.yaml
 [Setup sops](https://budimanjojo.github.io/talhelper/latest/guides/#configuring-sops-for-talhelper)
 
 [How to use sops in manifests and patches](https://budimanjojo.github.io/talhelper/latest/guides/#using-sops-encrypted-files-in-manifests-and-patches)
-
-## Sealed secrets
-
-Sealing a secret:
-
-```bash
-kubectl create secret generic test --dry-run=client --from-literal=key=value -o yaml | kubeseal --controller-namespace sealed-secrets --format yaml -w sealed-secret.yaml
-```
 
 ## Services to consider
 
