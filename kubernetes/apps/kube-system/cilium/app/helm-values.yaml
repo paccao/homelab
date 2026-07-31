@@ -59,7 +59,8 @@ operator:
     - key: node-role.kubernetes.io/control-plane
       operator: Exists
       effect: NoSchedule
-  replicas: 1
+  replicas: 2
+  minAvailable: 1
   rollOutPods: true
   prometheus:
     enabled: true
