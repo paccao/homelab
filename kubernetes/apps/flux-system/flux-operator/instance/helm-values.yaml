@@ -1,12 +1,16 @@
 ---
 instance:
   cluster:
-    networkPolicy: false
+    networkPolicy: true
   components:
     - source-controller
     - kustomize-controller
     - helm-controller
     - notification-controller
+  distribution:
+    version: "2.x"
+    registry: "ghcr.io/fluxcd"
+    artifact: "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests"
   sync:
     kind: GitRepository
     url: "https://codeberg.org/paccao/homelab.git"
