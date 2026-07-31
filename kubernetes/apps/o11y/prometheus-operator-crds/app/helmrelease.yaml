@@ -23,6 +23,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: prometheus-operator-crds-chart
+  releaseName: prometheus-operator-crds
   install:
     remediation:
       retries: -1
