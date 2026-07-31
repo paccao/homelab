@@ -1,0 +1,28 @@
+---
+instance:
+  cluster:
+    networkPolicy: true
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    - notification-controller
+  distribution:
+    version: "2.x"
+    registry: "ghcr.io/fluxcd"
+    artifact: "oci://ghcr.io/controlplaneio-fluxcd/flux-operator-manifests"
+  sync:
+    kind: GitRepository
+    url: "https://codeberg.org/paccao/homelab.git"
+    ref: "refs/heads/main"
+    path: kubernetes/flux/cluster
+  kustomize:
+    patches:
+      - # Cancel health checks on new Kustomizations revisions
+        patch: |-
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --feature-gates=CancelHealthCheckOnNewRevision=true
+        target:
+          kind: Deployment
+          name: kustomize-controller

@@ -24,9 +24,7 @@ nodes:
             gateway: 192.168.30.1
         vip:
           ip: "192.168.30.100"
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
+
   - hostname: pi5-controlplane-2
     ipAddress: 192.168.30.12
     controlPlane: true
@@ -55,9 +53,7 @@ nodes:
             gateway: 192.168.30.1
         vip:
           ip: "192.168.30.100"
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
+
   - hostname: pi5-worker-2
     ipAddress: 192.168.30.18
     controlPlane: false
@@ -86,9 +82,7 @@ nodes:
             gateway: 192.168.30.1
         vip:
           ip: "192.168.30.100"
-    nameservers:
-      - 1.1.1.1
-      - 8.8.8.8
+
   # - hostname: pi5-controlplane-3
   #   ipAddress: 192.168.30.14
   #   controlPlane: true
@@ -112,14 +106,12 @@ nodes:
   #       dhcp: false
   #       addresses:
   #         - 192.168.30.14/24 # Static IP
-  #       routes:
-  #         - network: 0.0.0.0/0
-  #           gateway: 192.168.30.1
-  #       vip:
-  #         ip: "192.168.30.100"
-  #  nameservers:
-  #    - 1.1.1.1
-  #    - 8.8.8.8
+  #  routes:
+  #    - network: 0.0.0.0/0
+  #      gateway: 192.168.30.1
+  #  vip:
+  #    ip: "192.168.30.100"
+
   # - hostname: pi5-worker-1
   #   ipAddress: 192.168.30.16
   #   controlPlane: false
@@ -143,14 +135,11 @@ nodes:
   #       dhcp: false
   #       addresses:
   #         - 192.168.30.16/24 # Static IP
-  #       routes:
-  #         - network: 0.0.0.0/0
-  #           gateway: 192.168.30.1
-  #       vip:
-  #         ip: "192.168.30.100"
-  #  nameservers:
-  #    - 1.1.1.1
-  #    - 8.8.8.8
+  #  routes:
+  #    - network: 0.0.0.0/0
+  #      gateway: 192.168.30.1
+  #  vip:
+  #    ip: "192.168.30.100"
 
   # - hostname: pi4b-worker-3
   #   ipAddress: 192.168.30.20
@@ -165,62 +154,23 @@ nodes:
   #      dhcp: false
   #      addresses:
   #        - 192.168.30.20/24 # Static IP
-  #      routes:
-  #        - network: 0.0.0.0/0
-  #          gateway: 192.168.30.1
-  #  nameservers:
-  #    - 1.1.1.1
-  #    - 8.8.8.8
+  #  routes:
+  #    - network: 0.0.0.0/0
+  #      gateway: 192.168.30.1
+  #  vip:
+  #    ip: "192.168.30.100"
 controlPlane:
   nodeLabels:
     node.kubernetes.io/exclude-from-external-load-balancers: ""
+  nameservers:
+    - 1.1.1.1
+    - 8.8.8.8
+    # - 194.242.2.4 # Mullvad DNS (Warning - DoH or DoT ONLY)
+  patches:
+    - "@./patches/controller/machine.yaml"
+    - "@./patches/controller/cluster.yaml"
 
-patches:
-  - |-
-    machine:
-      # time:
-      #   disabled: false
-      #   servers: # ntp.se
-      #     - 194.58.200.0
-      #     - 194.58.200.1
-      #     - 194.58.200.2
-      #     - 194.58.200.3
-      #     - 194.58.200.4
-      #     - 194.58.200.5
-      #     - 194.58.200.6
-      #     - 194.58.200.7
-      kubelet:
-        defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
-        disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
-        extraMounts:
-          - destination: /var/lib/longhorn
-            type: bind
-            source: /var/lib/longhorn
-            options:
-              - bind
-              - rshared
-              - rw
-        extraConfig:
-          imageMaximumGCAge: 168h # Kubelet garbage collects local images after one week
-        nodeIP:
-          validSubnets: # https://oneuptime.com/blog/post/2026-03-03-configure-kubelet-node-ip-in-talos-linux/view
-            - 192.168.30.0/24
-      features:
-        rbac: true # Enable role-based access control (RBAC).
-        apidCheckExtKeyUsage: true # Enable checks for extended key usage of client certificates in apid.
-      sysctls:
-        # Longhorn requires this
-        vm.nr_hugepages: "1024"
-      kernel:
-        modules:
-          # longhorn V2 data engine requirements
-          - name: nvme_tcp
-          - name: vfio_pci
-    cluster:
-      # Cilium requires this
-      network:
-        cni:
-            name: none
-      # disable kube-proxy  - required for Cilium with support for GatewayAPI
-      proxy:
-        disabled: true
+worker:
+  nameservers:
+    - 1.1.1.1
+    - 8.8.8.8

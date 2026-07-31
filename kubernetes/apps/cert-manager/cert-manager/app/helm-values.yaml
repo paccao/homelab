@@ -1,0 +1,25 @@
+---
+crds:
+  enabled: true
+replicaCount: 1
+dns01RecursiveNameservers: https://base.dns.mullvad.net/dns-query,https://dns.mullvad.net/dns-query,https://dns.quad9.net/dns-query
+dns01RecursiveNameserversOnly: true
+prometheus:
+  enabled: true
+  servicemonitor:
+    enabled: true
+resources: &resources
+  requests:
+    cpu: 10m
+    memory: 40Mi
+  limits:
+    memory: 40Mi
+webhook:
+  resources: *resources
+cainjector:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 128Mi
+    limits:
+      memory: 128Mi

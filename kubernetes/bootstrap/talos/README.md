@@ -114,3 +114,7 @@ talosctl apply-config -n <ip> --insecure --file clusterconfig/homelab-pi5-contro
 
 # --mode reboot
 ```
+
+### Next step
+
+Go to [bootstrap README](../README.md)

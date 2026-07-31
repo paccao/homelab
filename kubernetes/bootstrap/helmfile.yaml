@@ -1,0 +1,74 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/helmfile
+
+# Bootstraps core applications that provide a minimal runtime base for the
+# cluster. These releases are installed first so the cluster has the resources
+# Flux needs before its own reconciliation begins.
+#
+# After this bootstrap phase, Flux is ready to take over management of the
+# application stack and continue reconciling downstream state.
+
+helmDefaults:
+  cleanupOnFail: true
+  forceConflicts: true
+  wait: true
+  waitForJobs: true
+
+releases:
+  - name: prometheus-operator-crds
+    namespace: o11y
+    chart: oci://ghcr.io/prometheus-community/charts/prometheus-operator-crds
+    version: 30.0.1
+
+  - name: cilium
+    namespace: kube-system
+    chart: oci://quay.io/cilium/charts/cilium
+    version: 1.19.6
+    values:
+      - ../apps/kube-system/cilium/app/helm-values.yaml
+    needs:
+      - o11y/prometheus-operator-crds
+
+  - name: coredns
+    namespace: kube-system
+    chart: oci://ghcr.io/coredns/charts/coredns
+    version: 1.46.0
+    values:
+      - ../apps/kube-system/coredns/app/helm-values.yaml
+    needs:
+      - kube-system/cilium
+
+  - name: cert-manager
+    namespace: cert-manager
+    chart: oci://quay.io/jetstack/charts/cert-manager
+    version: v1.21.1
+    values:
+      - ../apps/cert-manager/cert-manager/app/helm-values.yaml
+    needs:
+      - kube-system/coredns
+
+  - name: grafana-operator
+    namespace: o11y
+    chart: oci://ghcr.io/grafana/helm-charts/grafana-operator
+    version: 5.24.0
+    needs:
+      - cert-manager/cert-manager
+
+  - name: flux-operator
+    namespace: flux-system
+    chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
+    version: 0.53.0
+    values:
+      - ../apps/flux-system/flux-operator/app/helm-values.yaml
+    needs:
+      - cert-manager/cert-manager
+
+  - name: flux-instance
+    namespace: flux-system
+    chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance
+    version: 0.53.0
+    wait: false
+    values:
+      - ../apps/flux-system/flux-operator/instance/helm-values.yaml
+    needs:
+      - flux-system/flux-operator
