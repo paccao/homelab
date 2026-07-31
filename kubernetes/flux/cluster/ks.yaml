@@ -15,10 +15,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -35,17 +31,10 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
   postBuild:
     substituteFrom:
       - name: cluster-settings
         kind: ConfigMap
-        optional: true
-      - name: cluster-secrets
-        kind: Secret
         optional: true
   patches:
     - # Add Sops decryption and postBuild substitutions to child Kustomizations
@@ -55,17 +44,10 @@ spec:
         metadata:
           name: not-used
         spec:
-          decryption:
-            provider: sops
-            secretRef:
-              name: sops-age
           postBuild:
             substituteFrom:
               - name: cluster-settings
                 kind: ConfigMap
-                optional: true
-              - name: cluster-secrets
-                kind: Secret
                 optional: true
       target:
         group: kustomize.toolkit.fluxcd.io
