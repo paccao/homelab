@@ -53,6 +53,12 @@ devices:
   - enp1s0
 
 operator:
+  nodeSelector:
+    node-role.kubernetes.io/control-plane: ""
+  tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      operator: Exists
+      effect: NoSchedule
   replicas: 1
   rollOutPods: true
   prometheus:
