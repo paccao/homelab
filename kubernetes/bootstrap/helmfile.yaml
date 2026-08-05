@@ -60,6 +60,7 @@ releases:
     version: 0.53.0
     values:
       - ../apps/flux-system/flux-operator/app/helm-values.yaml
+    createNamespace: true
     needs:
       - cert-manager/cert-manager
 
