@@ -31,18 +31,6 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 - **DNS**: CoreDNS
 - **Certificates**: Cert-manager, Let's encrypt
 
-## 🏛️ Architecture
-
-```mermaid
-graph TD
-    A[Git Repository] -->|GitOps| B[Flux CD]
-    B -->|Manages| C[Kubernetes Cluster]
-    C -->|Control Plane| D[1x Asus NUC, 1x Raspberry pi 5]
-    C -->|Workers| E[1x Raspberry pi 5]
-    C -->|Storage| F[Longhorn]
-    B -->|App of Apps| G[Applications]
-```
-
 ## Dependencies
 
 ```sh
