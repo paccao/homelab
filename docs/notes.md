@@ -4,6 +4,10 @@
 
 [https://kubesearch.dev/](https://kubesearch.dev/)
 
+## Talos config changes which might need a reboot
+
+[Link to docs](https://docs.siderolabs.com/talos/v1.14/configure-your-talos-cluster/system-configuration/editing-machine-configuration#changes-which-might-need-a-reboot)
+
 ## Security
 
 Scan cluster for with [kubescape](https://github.com/kubescape/kubescape) to detect vulnerabilities and misconfiguration.
