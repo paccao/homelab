@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 1h
   prune: false # Never delete this
-  wait: false
+  wait: true
   targetNamespace: flux-system
 
   path: ./kubernetes/apps/flux-system/flux-operator/app
@@ -15,11 +15,9 @@ spec:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-
-  postBuild:
-    substitute: {}
-
-  dependsOn: []
+  dependsOn:
+    - name: cert-manager
+      namespace: kube-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: flux-operator
