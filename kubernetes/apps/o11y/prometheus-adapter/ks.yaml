@@ -6,12 +6,14 @@ metadata:
   name: prometheus-adapter
   namespace: flux-system
 spec:
-  interval: 1h
-  path: ./kubernetes/apps/o11y/prometheus-adapter/app
-  prune: true
+  targetNamespace: o11y
+
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: o11y
+
+  path: ./kubernetes/apps/o11y/prometheus-adapter/app
+  prune: true
   wait: false
+  interval: 1h
