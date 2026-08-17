@@ -51,6 +51,8 @@ releases:
     namespace: o11y
     chart: oci://ghcr.io/grafana/helm-charts/grafana-operator
     version: 5.24.0
+    values:
+      - ../apps/o11y/grafana/app/helm-release.yaml
     needs:
       - cert-manager/cert-manager
 
