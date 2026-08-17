@@ -91,7 +91,7 @@ spec:
               fieldRef:
                 fieldPath: spec.nodeName
           - name: SERVER
-            value: http://monitoring-service.monitoring.svc.${CLUSTER_DOMAIN}/k8s/collect/{{token}}/temperature
+            value: http://monitoring-service.monitoring.svc.cluster.local/k8s/collect/{{token}}/temperature
         command: [ "sh", "-c"]
         args:
         - while true; do
