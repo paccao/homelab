@@ -6,14 +6,16 @@ metadata:
   name: grafana
   namespace: flux-system
 spec:
-  interval: 1h
-  path: ./kubernetes/apps/o11y/grafana/app
-  prune: true
+  targetNamespace: o11y
+
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: o11y
+
+  path: ./kubernetes/apps/o11y/grafana/app
+  interval: 1h
+  prune: true
   wait: true
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -26,16 +28,17 @@ spec:
   dependsOn:
     - name: grafana
       namespace: flux-system
-    - name: longhorn
-      namespace: longhorn-system
-  interval: 1h
-  path: ./kubernetes/apps/o11y/grafana/instance
-  prune: true
+
+  targetNamespace: o11y
+
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: o11y
+
+  path: ./kubernetes/apps/o11y/grafana/instance
+  interval: 1h
+  prune: true
   wait: false
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
@@ -45,16 +48,19 @@ metadata:
   name: dashboards
   namespace: flux-system
 spec:
-  interval: 1h
-  path: ./kubernetes/apps/o11y/grafana/dashboards
-  prune: true
+  targetNamespace: o11y
+
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: o11y
+
+  path: ./kubernetes/apps/o11y/grafana/dashboards
+  interval: 1h
+  prune: true
   wait: true
   force: true
+
   patches:
     - patch: |
         - op: add
