@@ -5,15 +5,14 @@ kind: Kustomization
 metadata:
   name: kube-prometheus-stack
 spec:
-  dependsOn:
-    - name: longhorn
-      namespace: longhorn-system
-  interval: 1h
-  path: ./kubernetes/apps/o11y/kube-prometheus-stack/app
-  prune: true
+  targetNamespace: o11y
+
   sourceRef:
     kind: GitRepository
     name: flux-system
     namespace: flux-system
-  targetNamespace: o11y
+
+  path: ./kubernetes/apps/o11y/kube-prometheus-stack/app
+  interval: 1h
+  prune: true
   wait: false
