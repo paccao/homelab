@@ -10,8 +10,6 @@ helmfile init
 helmfile diff
 
 # Deploy
-chmod 744 setup.sh && ./setup.sh # Creates namespaces not handled by helmreleases # TODO: fix
 helmfile -f crds.yaml template -q | kubectl apply --server-side --filename -
 helmfile -f apps.yaml template -q | kubectl apply --server-side --filename -
-
 ```

@@ -9,9 +9,6 @@ spec:
   interfaces:
     - enp1s0
     - end0
-  # serviceSelector:
-  #   matchLabels:
-  #     ip-pool: internal
   nodeSelector:
     matchExpressions:
       - key: node-role.kubernetes.io/control-plane
