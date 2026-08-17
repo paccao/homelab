@@ -10,6 +10,6 @@ helmfile init
 helmfile diff
 
 # Deploy
-helmfile -f crds.yaml template -q | kubectl apply --server-side --filename -
-helmfile -f apps.yaml template -q | kubectl apply --server-side --filename -
+helmfile -f crds.yaml template -q | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side --field-manager bootstrap --force-conflicts -f -
+helmfile -f apps.yaml sync
 ```
