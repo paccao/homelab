@@ -23,7 +23,7 @@ metadata:
   name: cluster-apps
   namespace: flux-system
 spec:
-  interval: 30m
+  interval: 1h
   dependsOn:
     - name: cluster-meta
   path: ./kubernetes/apps
@@ -37,7 +37,7 @@ spec:
         kind: ConfigMap
         optional: true
   patches:
-    - # Add Sops decryption and postBuild substitutions to child Kustomizations
+    - # Add postBuild substitutions to child Kustomizations
       patch: |-
         apiVersion: kustomize.toolkit.fluxcd.io/v1
         kind: Kustomization

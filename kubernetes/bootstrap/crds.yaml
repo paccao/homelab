@@ -21,11 +21,11 @@ bases:
 defaultInherit: default
 
 releases:
-  - name: envoy-gateway
-    namespace: network
-
-  - name: grafana-operator
-    namespace: o11y
+  # - name: envoy-gateway
+  #   namespace: network
 
   - name: kube-prometheus-stack
+    namespace: o11y
+
+  - name: grafana-operator
     namespace: o11y
