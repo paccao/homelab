@@ -20,6 +20,12 @@ releases:
     version: 1.20.0
     values:
       - templates/values.yaml.gotmpl
+      - hubble:
+          enabled: false
+          relay:
+            enabled: false
+          ui:
+            enabled: false
     hooks:
       - # Wait for Cilium CRDs to be available
         command: bash

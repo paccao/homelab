@@ -23,6 +23,7 @@ spec:
       hostRoot: /sys/fs/cgroup
     ipam:
       mode: kubernetes
+    rollOutCiliumPods: true
     securityContext:
       capabilities:
         ciliumAgent:
@@ -33,6 +34,8 @@ spec:
           - IPC_LOCK
           - SYS_ADMIN
           - SYS_RESOURCE
+          - PERFMON
+          - BPF
           - DAC_OVERRIDE
           - FOWNER
           - SETGID
@@ -41,6 +44,8 @@ spec:
           - NET_ADMIN
           - SYS_ADMIN
           - SYS_RESOURCE
+          - PERFMON
+          - BPF
     resources:
       limits:
         memory: 512Mi
@@ -103,8 +108,10 @@ spec:
     dashboards:
       enabled: true
     hubble:
-      enabled: false
+      enabled: true
       relay:
-        enabled: false
+        enabled: true
+        rollOutPods: true
       ui:
-        enabled: false
+        enabled: true
+        rollOutPods: true
