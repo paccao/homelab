@@ -17,5 +17,5 @@ done
 # CRDs
 helmfile -f crds.yaml template -q | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side --field-manager bootstrap --force-conflicts -f -
 # Apps
-helmfile -f apps.yaml sync
+helmfile -f apps.yaml sync --debug
 ```
