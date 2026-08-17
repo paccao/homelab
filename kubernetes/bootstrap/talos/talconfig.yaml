@@ -83,82 +83,82 @@ nodes:
         vip:
           ip: "192.168.30.100"
 
-  # - hostname: pi5-controlplane-3
-  #   ipAddress: 192.168.30.14
-  #   controlPlane: true
-  #   installDisk: /dev/ # microSD card
-  #   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
-  #   machineSpec:
-  #     secureboot: false
-  #   volumes:
-  #     - name: EPHEMERAL
-  #       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
-  #       # This means all the writeable directories are under this partition:
-  #       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
-  #       provisioning:
-  #         diskSelector:
-  #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
-  #         minSize: 100GiB
-  #         grow: true # Volume grows to disk max size if possible
-  #   networkInterfaces:
-  #     - deviceSelector:
-  #         hardwareAddr:  # end0
-  #       dhcp: false
-  #       addresses:
-  #         - 192.168.30.14/24 # Static IP
-  #  routes:
-  #    - network: 0.0.0.0/0
-  #      gateway: 192.168.30.1
-  #  vip:
-  #    ip: "192.168.30.100"
+# - hostname: pi5-controlplane-3
+#   ipAddress: 192.168.30.14
+#   controlPlane: true
+#   installDisk: /dev/ # microSD card
+#   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+#   machineSpec:
+#     secureboot: false
+#   volumes:
+#     - name: EPHEMERAL
+#       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+#       # This means all the writeable directories are under this partition:
+#       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+#       provisioning:
+#         diskSelector:
+#           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+#         minSize: 100GiB
+#         grow: true # Volume grows to disk max size if possible
+#   networkInterfaces:
+#     - deviceSelector:
+#         hardwareAddr:  # end0
+#       dhcp: false
+#       addresses:
+#         - 192.168.30.14/24 # Static IP
+#  routes:
+#    - network: 0.0.0.0/0
+#      gateway: 192.168.30.1
+#  vip:
+#    ip: "192.168.30.100"
 
-  # - hostname: pi5-worker-1
-  #   ipAddress: 192.168.30.16
-  #   controlPlane: false
-  #   installDisk: /dev/ # microSD card
-  #   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
-  #   machineSpec:
-  #     secureboot: false
-  #   volumes:
-  #     - name: EPHEMERAL
-  #       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
-  #       # This means all the writeable directories are under this partition:
-  #       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
-  #       provisioning:
-  #         diskSelector:
-  #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
-  #         minSize: 100GiB
-  #         grow: true # Volume grows to disk max size if possible
-  #   networkInterfaces:
-  #     - deviceSelector:
-  #         hardwareAddr:  # end0
-  #       dhcp: false
-  #       addresses:
-  #         - 192.168.30.16/24 # Static IP
-  #  routes:
-  #    - network: 0.0.0.0/0
-  #      gateway: 192.168.30.1
-  #  vip:
-  #    ip: "192.168.30.100"
+# - hostname: pi5-worker-1
+#   ipAddress: 192.168.30.16
+#   controlPlane: false
+#   installDisk: /dev/ # microSD card
+#   talosImageURL: factory.talos.dev/installer/7c149dacd0517d92241b83e73d52e4d86d1913a96630a837b758432d9362f14a
+#   machineSpec:
+#     secureboot: false
+#   volumes:
+#     - name: EPHEMERAL
+#       # EPHEMERAL is a "magic" name in Talos: it is a system volume, corresponding to "/var"
+#       # This means all the writeable directories are under this partition:
+#       # etcd, containerd images, logs, emptyDir, hostpath PVs, etc.
+#       provisioning:
+#         diskSelector:
+#           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
+#         minSize: 100GiB
+#         grow: true # Volume grows to disk max size if possible
+#   networkInterfaces:
+#     - deviceSelector:
+#         hardwareAddr:  # end0
+#       dhcp: false
+#       addresses:
+#         - 192.168.30.16/24 # Static IP
+#  routes:
+#    - network: 0.0.0.0/0
+#      gateway: 192.168.30.1
+#  vip:
+#    ip: "192.168.30.100"
 
-  # - hostname: pi4b-worker-3
-  #   ipAddress: 192.168.30.20
-  #   controlPlane: false
-  #   installDisk:
-  #   talosImageURL:
-  #   machineSpec:
-  #     secureboot: false
-  #  networkInterfaces:
-  #    - deviceSelector:
-  #        hardwareAddr: #
-  #      dhcp: false
-  #      addresses:
-  #        - 192.168.30.20/24 # Static IP
-  #  routes:
-  #    - network: 0.0.0.0/0
-  #      gateway: 192.168.30.1
-  #  vip:
-  #    ip: "192.168.30.100"
+# - hostname: pi4b-worker-3
+#   ipAddress: 192.168.30.20
+#   controlPlane: false
+#   installDisk:
+#   talosImageURL:
+#   machineSpec:
+#     secureboot: false
+#  networkInterfaces:
+#    - deviceSelector:
+#        hardwareAddr: #
+#      dhcp: false
+#      addresses:
+#        - 192.168.30.20/24 # Static IP
+#  routes:
+#    - network: 0.0.0.0/0
+#      gateway: 192.168.30.1
+#  vip:
+#    ip: "192.168.30.100"
 controlPlane:
   nodeLabels:
     node.kubernetes.io/exclude-from-external-load-balancers: ""

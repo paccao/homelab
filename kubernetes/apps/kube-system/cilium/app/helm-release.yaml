@@ -56,16 +56,16 @@ spec:
 
     # L2 IPAM
     l2announcements:
-        enabled: true
-        leaseDuration: 10s
-        leaseRenewDeadline: 5s
-        leaseRetryPeriod: 1s
+      enabled: true
+      leaseDuration: 10s
+      leaseRenewDeadline: 5s
+      leaseRetryPeriod: 1s
     l2NeighDiscovery:
-        enabled: true
+      enabled: true
     k8sClientRateLimit: # Client rate limits to prevent flooding the K8s API
-        # How to calculate: QPS = N services * (1 / leaseRenewDeadline)
-        qps: 5 # default 10
-        burst: 10 # default 20
+      # How to calculate: QPS = N services * (1 / leaseRenewDeadline)
+      qps: 5 # default 10
+      burst: 10 # default 20
     devices:
       - end0
       - enp1s0

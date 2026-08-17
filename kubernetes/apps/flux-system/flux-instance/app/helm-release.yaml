@@ -26,7 +26,7 @@ spec:
 
       distribution:
         artifact: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance
-        registry:  ghcr.io/fluxcd
+        registry: ghcr.io/fluxcd
         version: 2.x
 
       sync:

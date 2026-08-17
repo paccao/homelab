@@ -1,10 +1,11 @@
+---
 cluster:
   coreDNS:
     disabled: true
   # Cilium requires this
   network:
     cni:
-        name: none
+      name: none
   # disable kube-proxy - let Cilium handle it instead
   proxy:
     disabled: true
