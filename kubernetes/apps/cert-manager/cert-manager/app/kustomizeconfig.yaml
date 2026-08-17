@@ -1,7 +1,0 @@
---- # This tells the configmapgenerator in kustomization that this Custom Resource's suffix hash should be updated
-nameReference:
-  - kind: ConfigMap
-    version: v1
-    fieldSpecs:
-      - path: spec/valuesFrom/name
-        kind: HelmRelease
