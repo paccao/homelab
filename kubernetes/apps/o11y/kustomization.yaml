@@ -16,5 +16,26 @@ patches:
       - op: add
         path: /metadata/name
         value: o11y
+      - op: add
+        path: /metadata/labels
+        value: {}
+      - op: add
+        path: /metadata/labels/pod-security.kubernetes.io~1enforce
+        value: privileged
+      - op: add
+        path: /metadata/labels/pod-security.kubernetes.io~1enforce-version
+        value: latest
+      - op: add
+        path: /metadata/labels/pod-security.kubernetes.io~1audit
+        value: baseline
+      - op: add
+        path: /metadata/labels/pod-security.kubernetes.io~1audit-version
+        value: latest
+      - op: add
+        path: /metadata/labels/pod-security.kubernetes.io~1warn
+        value: baseline
+      - op: add
+        path: /metadata/labels/pod-security.kubernetes.io~1warn-version
+        value: latest
     target:
       kind: Namespace
