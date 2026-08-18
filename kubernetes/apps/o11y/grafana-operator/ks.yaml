@@ -13,7 +13,7 @@ spec:
     name: flux-system
     namespace: flux-system
 
-  path: ./kubernetes/apps/o11y/grafana/app
+  path: ./kubernetes/apps/o11y/grafana-operator/app
   interval: 1h
   prune: true
   wait: true
@@ -36,7 +36,7 @@ spec:
     name: flux-system
     namespace: flux-system
 
-  path: ./kubernetes/apps/o11y/grafana/instance
+  path: ./kubernetes/apps/o11y/grafana-operator/instance
   interval: 1h
   prune: true
   wait: false
@@ -55,7 +55,7 @@ spec:
     name: flux-system
     namespace: flux-system
 
-  path: ./kubernetes/apps/o11y/grafana/dashboards
+  path: ./kubernetes/apps/o11y/grafana-operator/dashboards
   interval: 1h
   prune: true
   wait: true
