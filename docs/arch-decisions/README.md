@@ -8,3 +8,4 @@ To get started, copy the [template](template.md).
 
 ## ADRs
 - [ADR-0](0-prometheus.md) - Prometheus pod security
+- [ADR-1](1-csi-and-data-integrity.md) - CSI and data integrity
