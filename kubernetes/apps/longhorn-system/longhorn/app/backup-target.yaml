@@ -1,0 +1,6 @@
+apiVersion: longhorn.io/v1beta2
+kind: BackupTarget
+metadata:
+  name: default
+spec:
+  backupTargetURL: ""
