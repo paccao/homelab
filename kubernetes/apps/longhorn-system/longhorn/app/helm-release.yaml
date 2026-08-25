@@ -1,12 +1,32 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: &app longhorn
 spec:
-  chartRef:
-    kind: HelmChart
-    name: *app
-    releaseName: *app
-    namespace: flux-system
-  interval: 30m0s
+  targetNamespace: longhorn-system
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.12.1
+      sourceRef:
+        kind: HelmRepository
+        name: *app
+        namespace: longhorn-system
+  interval: 60m
+  timeout: 20m
+  install:
+    crds: CreateReplace
+    remediation:
+      retries: -1 # infinite retries
+  upgrade:
+    crds: CreateReplace
+    cleanupOnFail: true # Allows deletion of new resources created during the upgrade of the release when it fails.
+    remediation:
+      strategy: rollback
+      retries: 3
+  values:
+    spec:
+      defaultSettings:
+        defaultDataPath: /var/lib/longhorn/
