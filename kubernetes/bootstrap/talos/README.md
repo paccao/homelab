@@ -111,6 +111,7 @@ Then apply each config to the respective node:
 ```sh
 talosctl apply-config -n <ip> --insecure --file clusterconfig/homelab-nuc-controlplane-1.yaml
 talosctl apply-config -n <ip> --insecure --file clusterconfig/homelab-pi5-controlplane-2.yaml
+talosctl apply-config -n <ip> --insecure --file clusterconfig/homelab-pi5-worker-2.yaml
 
 # --mode reboot
 ```
