@@ -1,11 +1,11 @@
-# 🏠 Home Lab Kubernetes Cluster
+# 🏠 GitOps homelab
 
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![Talos](https://img.shields.io/badge/Talos%20Linux-purple.svg?style=for-the-badge&logoColor=white)
 ![GitOps](https://img.shields.io/badge/GitOps-orange.svg?style=for-the-badge)
 ![FluxCD](https://img.shields.io/badge/FluxCD-green.svg?style=for-the-badge)
 
-A bare-metal Kubernetes cluster running on TalOS Linux. Apps-of-apps pattern with FluxCD.
+A bare-metal Kubernetes cluster running on TalOS Linux with GitOps to configure it declaratively.
 
 In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can find my reasonings for decisions I take in the cluster.
 
@@ -27,7 +27,7 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 ### Network Stack
 - **CNI**: Cilium
 - **External LB**: Cilium/MetalLB/kube-vip/k8s-gateway CoreDNS plugin (TBD)
-- **Ingress**: Envoy-gateway
+- **Ingress**: Envoy-gateway (TBD)
 - **DNS**: CoreDNS
 - **Certificates**: Cert-manager, Let's encrypt
 
@@ -53,8 +53,6 @@ mise install --locked
 subnet 192.168.30.0/24
 
 ```
-192.168.30.1                     - Gateway
-192.168.30.2                     - DNS server
 192.168.30.10                    - nuc-controlplane-1
 192.168.30.12                    - pi5-controlplane-2
 192.168.30.14                    - pi5-controlplane-3
@@ -64,7 +62,6 @@ subnet 192.168.30.0/24
 192.168.30.100                   - TalOS VIP
 192.168.30.110 -> 192.168.30.200 - CiliumLoadBalancerIPPool
 192.168.30.240 -> 192.168.30.250 - DHCP
-192.168.30.255                   - Broadcast addr
 ```
 
 ---
