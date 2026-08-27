@@ -33,11 +33,13 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 
 ## Dependencies
 
-```sh
-pacman -S kubectl helm helmfile kustomize talosctl talhelper sops age cilium-cli
-```
+This repository uses Mise to set up tooling locally. Follow this [guide](https://mise.jdx.dev/getting-started.html) to set it up.
 
-[flux-operator](https://github.com/controlplaneio-fluxcd/flux-operator/releases)
+Then install dependencies using the lockfile.
+
+```sh
+mise install --locked
+```
 
 ## Getting started
 
@@ -66,16 +68,6 @@ subnet 192.168.30.0/24
 ```
 
 ---
-
-## Tools
-
-This repository uses Mise to set up tooling locally. Follow this [guide](https://mise.jdx.dev/getting-started.html) to set it up.
-
-Then install dependencies using the lockfile.
-
-```sh
-mise install --locked
-```
 
 ## Other notes
 
