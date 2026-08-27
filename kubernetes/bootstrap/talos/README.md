@@ -1,4 +1,11 @@
-# Bootstrap guide
+# Provisioning and resetting nodes
+
+This is the starting point for setting up the cluster
+
+1. [Provisioning](##provisioning_guide)
+1. [Resetting nodes](##resetting_nodes_guide)
+
+## Provisioning guide
 
 ### Generate image id:
 
@@ -25,7 +32,7 @@ talosImageURL: factory.talos.dev/installer/<id>
 # Fish shell
 set -x SCHEMATIC_ID # <id>
 set -x TALOS_INSTALL_VERSION # <version>
-set -x TALOSIMG_INSTALL_PATH ~/Downloads/images/
+set -x TALOSIMG_INSTALL_PATH ~/Downloads/images
 
 curl -fL "https://factory.talos.dev/image/$SCHEMATIC_ID/$TALOS_INSTALL_VERSION/metal-arm64.raw.xz" -o "$TALOSIMG_INSTALL_PATH/talos-$TALOS_INSTALL_VERSION-metal-arm64.raw.xz"
 unxz "$TALOSIMG_INSTALL_PATH/talos-$TALOS_INSTALL_VERSION-metal-arm64.raw.xz"
@@ -118,4 +125,12 @@ talosctl apply-config -n <ip> --insecure --file clusterconfig/homelab-pi5-worker
 
 ### Next step
 
-Go to [bootstrap README](../README.md)
+Go to [bootstrap README](../README.md) to set up flux and the cluster.
+
+---
+
+## Resetting nodes
+
+When you reset the raspberry pi5 nodes, you have to re-provision the SD card from scratch.
+
+Follow the provisioning guide, but make sure to download the correct schematid ID, set the correct talos version etc, depending on what is running in the cluster.
