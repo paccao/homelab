@@ -2,8 +2,8 @@
 
 This is the starting point for setting up the cluster
 
-1. [Provisioning](##provisioning-guide)
-1. [Resetting nodes](##resetting-nodes-guide)
+1. [Provisioning](#provisioning-guide)
+1. [Resetting nodes](#resetting-guide)
 
 ## Provisioning guide
 
@@ -128,7 +128,7 @@ Go to [bootstrap README](../README.md) to set up flux and the cluster.
 
 ---
 
-## Resetting nodes guide
+## Resetting guide
 
 When you reset the raspberry pi5 nodes using talosctl, you have to re-provision the SD card from scratch.
 
