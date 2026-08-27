@@ -39,11 +39,16 @@ pacman -S kubectl helm helmfile kustomize talosctl talhelper sops age cilium-cli
 
 [flux-operator](https://github.com/controlplaneio-fluxcd/flux-operator/releases)
 
-## Bootstrap cluster
+## Getting started
 
-[Guide](kubernetes/bootstrap/talos/README.md)
+1. Provision the nodes by following this [guide](kubernetes/bootstrap/talos/README.md)
+1. Bootstrap flux and the cluster by following this [guide](kubernetes/bootstrap/README.md)
 
-My IP plan before Cilium LB-IPAM is setup:
+---
+
+## IP plan
+
+subnet 192.168.30.0/24
 
 ```
 192.168.30.1                     - Gateway
