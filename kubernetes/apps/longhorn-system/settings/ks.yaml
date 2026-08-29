@@ -19,7 +19,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
 
-  path: ./kubernetes/apps/longhorn-system/longhorn/settings
+  path: ./kubernetes/apps/longhorn-system/settings/app
   prune: false # never should be deleted
   wait: false
   interval: 30m
