@@ -29,3 +29,6 @@ releases:
 
   - name: grafana-operator
     namespace: o11y
+
+  - name: longhorn
+    namespace: longhorn-system
