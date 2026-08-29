@@ -1,0 +1,10 @@
+apiVersion: longhorn.io/v1beta2
+kind: RecurringJob
+metadata:
+  name: filesystem-trim
+spec:
+  cron: "0 4 * * *" # Run at 4 AM daily
+  task: "filesystem-trim"
+  retain: 1
+  groups:
+    - default # Applies to all PVCs in the default group

@@ -5,6 +5,7 @@ kind: Kustomization
 namespace: longhorn-system
 resources:
   - ./longhorn/ks.yaml
+  - ./settings/ks.yaml
 components:
   - ../../flux/components/namespace
 patches:
