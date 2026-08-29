@@ -22,14 +22,30 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 - **Runtime**: Containerd
 - **CSI**: Longhorn
 - **GitOps Engine**: Flux CD
-- **Observability (o11y)**: Prometheus, Grafana, Loki, Alertmanager, smartctl-exporter
 
 ### Network Stack
 - **CNI**: Cilium
-- **External LB**: Cilium/MetalLB/kube-vip/k8s-gateway CoreDNS plugin (TBD)
+- **Loadbalancer**: Cilium L2 with ARP/Cilium+OPNSense BGP/MetalLB/kube-vip/k8s-gateway CoreDNS plugin (TBD)
 - **Ingress**: Envoy-gateway (TBD)
 - **DNS**: CoreDNS
 - **Certificates**: Cert-manager, Let's encrypt
+
+### Observability (o11y): 
+- **Metrics engine**: Prometheus
+- **NVMe metrics**: smartctl-exporter
+- **Dashboards**: Grafana
+- **Logs**: Grafana Loki
+- **Alerts**: Alertmanager
+
+### Security
+- **Network policies**: Cilium
+- **Static image scanning**: Trivy
+- **Intrusion detection system**: Crowdsec
+- **Web application firewall**: (TBD) Crowdsec? Cilium?
+
+Additionally, go through the [Kubernetes security checklist](https://kubernetes.io/docs/concepts/security/security-checklist/)
+
+---
 
 ## Dependencies
 
