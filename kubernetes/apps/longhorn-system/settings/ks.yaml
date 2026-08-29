@@ -7,8 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: longhorn-system
-  dependsOn:
-    - name: longhorn
 
   sourceRef:
     kind: GitRepository
