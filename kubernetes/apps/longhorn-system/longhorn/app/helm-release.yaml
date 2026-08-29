@@ -46,6 +46,7 @@ spec:
         guaranteedInstanceManagerCPU: 12 # default
         storageOverProvisioningPercentage: 100 # default
         storageMinimalAvailablePercentage: 25 # default
+        snapshotMaxCount: 20 # Per volume
         replicaSoftAntiAffinity: false
         allowVolumeCreationWithDegradedAvailability: false
         replicaAutoBalance: "least-effort"
