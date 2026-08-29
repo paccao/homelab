@@ -176,6 +176,7 @@ worker:
     - 8.8.8.8
   patches:
     - "@./patches/worker/longhorn-user-volume.yaml"
+    - "@./patches/worker/labels.yaml"
 
 # Global
 patches:
