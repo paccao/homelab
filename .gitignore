@@ -12,7 +12,7 @@
 /nodes.yaml
 # Kubernetes
 kubeconfig.yaml
-talosconfig.yaml
+talosconfig*
 talsecret.yaml
 secrets.yaml
 # Misc.

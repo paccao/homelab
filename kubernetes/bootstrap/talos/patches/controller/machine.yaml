@@ -1,29 +1,5 @@
 ---
 machine:
-  kubelet:
-    defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
-    disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
-    extraMounts:
-      - destination: /var/lib/longhorn
-        type: bind
-        source: /var/lib/longhorn
-        options:
-          - bind
-          - rshared
-          - rw
-    extraConfig:
-      imageMaximumGCAge: 168h # Kubelet garbage collects local images after one week
-    nodeIP:
-      validSubnets: # https://oneuptime.com/blog/post/2026-03-03-configure-kubelet-node-ip-in-talos-linux/view
-        - 192.168.30.0/24
   features:
     rbac: true # Enable role-based access control (RBAC).
     apidCheckExtKeyUsage: true # Enable checks for extended key usage of client certificates in apid.
-  sysctls:
-    # Longhorn requires this
-    vm.nr_hugepages: "1024"
-  kernel:
-    modules:
-      # longhorn V2 data engine requirements
-      - name: nvme_tcp
-      - name: vfio_pci

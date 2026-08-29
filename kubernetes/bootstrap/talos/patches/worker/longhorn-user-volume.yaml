@@ -1,0 +1,9 @@
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: longhorn
+provisioning:
+  diskSelector:
+    match: disk.transport == 'nvme' && !system_disk
+  grow: false
+  minSize: 200GiB
+  maxSize: 206GiB
