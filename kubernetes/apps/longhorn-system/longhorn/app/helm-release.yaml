@@ -6,14 +6,9 @@ metadata:
   name: &app longhorn
 spec:
   targetNamespace: longhorn-system
-  chart:
-    spec:
-      chart: longhorn
-      version: 1.12.1
-      sourceRef:
-        kind: HelmRepository
-        name: *app
-        namespace: longhorn-system
+  chartRef:
+    kind: OCIRepository
+    name: longhorn
   interval: 60m
   timeout: 20m
   install:
