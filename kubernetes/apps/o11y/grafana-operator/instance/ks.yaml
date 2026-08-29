@@ -6,10 +6,6 @@ metadata:
   name: grafana-instance
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: grafana
-      namespace: flux-system
-
   targetNamespace: o11y
 
   sourceRef:
