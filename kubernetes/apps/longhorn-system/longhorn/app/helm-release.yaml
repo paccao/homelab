@@ -34,10 +34,10 @@ spec:
       defaultNodeSelector:
         enable: true
         selector:
-          node-role.kubernetes.io/worker: "" # Default storage class only
+          worker-storage: true # Default storage class only
     global:
       nodeSelector: # Schedules all longhorn components on worker nodes only
-        node-role.kubernetes.io/worker: ""
+        worker-storage: true
     spec:
       defaultSettings:
         v1DataEngine: true
