@@ -1,0 +1,34 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: dashboards
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: grafana
+      namespace: flux-system
+
+  targetNamespace: o11y
+
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+    namespace: flux-system
+
+  path: ./kubernetes/apps/o11y/grafana-operator/dashboards
+  interval: 1h
+  prune: true
+  wait: true
+  force: true
+
+  patches:
+    - patch: |
+        - op: add
+          path: /spec/instanceSelector
+          value:
+            matchLabels:
+              dashboards: grafana
+      target:
+        kind: GrafanaDashboard
