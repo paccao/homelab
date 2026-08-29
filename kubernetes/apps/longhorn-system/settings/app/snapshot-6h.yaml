@@ -7,5 +7,5 @@ spec:
   name: snapshot-6h
   cron: "0 4,10,16,22 * * *"
   task: "snapshot"
-  retain: 8
+  retain: 5
   concurrency: 2
