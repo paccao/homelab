@@ -6,3 +6,4 @@ namespace: longhorn-system
 resources:
   - ./helm-release.yaml
   - ./helm-repository.yaml
+  - ./backup-target.yaml
