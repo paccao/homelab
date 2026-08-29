@@ -4,7 +4,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: o11y
 resources:
-  - ./grafana-operator/ks.yaml
+  - ./grafana-operator/app/ks.yaml
+  - ./grafana-operator/instance/ks.yaml
+  - ./grafana-operator/dashboards/ks.yaml
   - ./prometheus-adapter/ks.yaml
   - ./prometheus-operator-crds/ks.yaml
   - ./smartctl-exporter/ks.yaml
