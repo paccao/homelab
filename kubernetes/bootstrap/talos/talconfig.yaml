@@ -98,7 +98,7 @@ nodes:
 #       provisioning:
 #         diskSelector:
 #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
-#         minSize: 100GiB
+#         minSize: 50GiB
 #         grow: true # Volume grows to disk max size if possible
 #   networkInterfaces:
 #     - deviceSelector:
@@ -127,7 +127,7 @@ nodes:
 #       provisioning:
 #         diskSelector:
 #           match: "disk.model.startsWith('Lexar SSD NM620')" # 256 GB size
-#         minSize: 100GiB
+#         minSize: 50GiB
 #         grow: true # Volume grows to disk max size if possible
 #   networkInterfaces:
 #     - deviceSelector:
