@@ -26,10 +26,27 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  values:
+  values: # reference: https://github.com/longhorn/charts/tree/v1.12.x/charts/longhorn
     persistence:
+      backupTargetName: "" # TODO: fix backups
       defaultClass: true
-      dataEngine: v1
+      dataEngine: v1 # For the default storage class only
+      defaultNodeSelector:
+        enable: true
+        selector:
+          node-role.kubernetes.io/worker: "" # Default storage class only
+    global:
+      nodeSelector: # Schedules all longhorn components on worker nodes only
+        node-role.kubernetes.io/worker: ""
     spec:
       defaultSettings:
+        v1DataEngine: true
         defaultDataPath: /var/mnt/longhorn
+        # Guaranteed Instance Manager CPU = The estimated max Longhorn volume engine and replica count on a node * 0.1 / The total allocatable CPUs on the node * 100.
+        guaranteedInstanceManagerCPU: 12 # default
+        storageOverProvisioningPercentage: 100 # default
+        storageMinimalAvailablePercentage: 25 # default
+        replicaSoftAntiAffinity: false
+        allowVolumeCreationWithDegradedAvailability: false
+        replicaAutoBalance: "least-effort"
+        allowEmptyNodeSelectorVolume: false # Disable scheduling of empty node selector volumes to any node.
