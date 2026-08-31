@@ -37,6 +37,7 @@ spec:
       v1DataEngine: true
       defaultDataPath: /var/mnt/longhorn
       createDefaultDiskLabeledNodes: true
+      storageReservedPercentageForDefaultDisk: 0
       # Guaranteed Instance Manager CPU = The estimated max Longhorn volume engine and replica count on a node * 0.1 / The total allocatable CPUs on the node * 100.
       guaranteedInstanceManagerCPU: 12 # default
       storageOverProvisioningPercentage: 100 # default
