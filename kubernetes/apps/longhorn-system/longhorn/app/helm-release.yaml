@@ -30,7 +30,7 @@ spec:
       defaultNodeSelector:
         enable: true
         selector:
-          worker-storage: "true" # Default storage class only
+          worker-storage: "" # Default storage class only
     global:
       nodeSelector: # Schedules all longhorn components on worker nodes only
         worker-storage: "true"
