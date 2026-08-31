@@ -33,16 +33,15 @@ spec:
     global:
       nodeSelector: # Schedules all longhorn components on worker nodes only
         worker-storage: "true"
-    spec:
-      defaultSettings:
-        v1DataEngine: true
-        defaultDataPath: /var/mnt/longhorn
-        # Guaranteed Instance Manager CPU = The estimated max Longhorn volume engine and replica count on a node * 0.1 / The total allocatable CPUs on the node * 100.
-        guaranteedInstanceManagerCPU: 12 # default
-        storageOverProvisioningPercentage: 100 # default
-        storageMinimalAvailablePercentage: 25 # default
-        snapshotMaxCount: 20 # Per volume
-        replicaSoftAntiAffinity: false
-        allowVolumeCreationWithDegradedAvailability: false
-        replicaAutoBalance: "least-effort"
-        allowEmptyNodeSelectorVolume: false # Disable scheduling of empty node selector volumes to any node.
+    defaultSettings:
+      v1DataEngine: true
+      defaultDataPath: /var/mnt/longhorn
+      # Guaranteed Instance Manager CPU = The estimated max Longhorn volume engine and replica count on a node * 0.1 / The total allocatable CPUs on the node * 100.
+      guaranteedInstanceManagerCPU: 12 # default
+      storageOverProvisioningPercentage: 100 # default
+      storageMinimalAvailablePercentage: 25 # default
+      snapshotMaxCount: 20 # Per volume
+      replicaSoftAntiAffinity: false
+      allowVolumeCreationWithDegradedAvailability: false
+      replicaAutoBalance: "least-effort"
+      allowEmptyNodeSelectorVolume: false # Disable scheduling of empty node selector volumes to any node.
