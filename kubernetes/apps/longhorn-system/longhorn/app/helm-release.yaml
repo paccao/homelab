@@ -26,6 +26,7 @@ spec:
       backupTargetName: "" # TODO: fix backups
       defaultClass: true
       dataEngine: v1 # For the default storage class only
+      defaultClassReplicaCount: 1
       defaultNodeSelector:
         enable: true
         selector:
