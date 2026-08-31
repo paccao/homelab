@@ -20,5 +20,7 @@ secrets.yaml
 .task/
 .venv/
 Thumbs.db
+secret.yaml
+secrets.yaml
 
 infra/cilium/secrets/
