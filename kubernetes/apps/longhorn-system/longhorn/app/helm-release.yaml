@@ -29,8 +29,7 @@ spec:
       defaultClassReplicaCount: 1
       defaultNodeSelector:
         enable: true
-        selector:
-          worker-storage: "" # Default storage class only
+        selector: "worker-storage" # Default storage class only
     global:
       nodeSelector: # Schedules all longhorn components on worker nodes only
         worker-storage: "true"
