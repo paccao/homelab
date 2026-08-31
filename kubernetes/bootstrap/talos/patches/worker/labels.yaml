@@ -1,4 +1,5 @@
 machine:
   nodeLabels:
     node-role.kubernetes.io/worker: ""
+    node.longhorn.io/create-default-disk: true
     worker-storage: true
