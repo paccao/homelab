@@ -14,3 +14,24 @@ spec:
       enabled: true
     serviceMonitor:
       enabled: true
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: Deployment
+              name: grafana-deployment
+            patch: |-
+              - op: add
+                path: /spec/template/spec/securityContext
+                value:
+                  runAsNonRoot: true
+                  runAsUser: 1000
+                  seccompProfile:
+                    type: RuntimeDefault
+              - op: add
+                path: /spec/template/spec/containers/0/securityContext
+                value:
+                  allowPrivilegeEscalation: false
+                  capabilities:
+                    drop:
+                      - ALL
