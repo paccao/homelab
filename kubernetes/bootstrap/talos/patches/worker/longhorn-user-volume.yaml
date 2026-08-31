@@ -3,7 +3,7 @@ kind: UserVolumeConfig
 name: longhorn
 provisioning:
   diskSelector:
-    match: disk.transport == 'nvme' && !system_disk
+    match: "disk.model.startsWith('Lexar SSD NM620')"
   grow: false
-  minSize: 200GiB
-  maxSize: 206GiB
+  minSize: 200GB
+  maxSize: 200GB
