@@ -6,5 +6,4 @@ provisioning:
   diskSelector:
     match: "disk.model.startsWith('Lexar SSD NM620')"
   grow: false
-  minSize: 185 GiB
-  maxSize: 185 GiB
+  maxSize: 185GiB
