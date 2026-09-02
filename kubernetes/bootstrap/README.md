@@ -9,13 +9,18 @@ helmfile init
 # dry-run
 helmfile diff
 
-# --- Deploy ---
+# --- Bootstrap ---
 # Namespaces
 find kubernetes/apps -mindepth 1 -maxdepth 1 -type d -printf "%f\n"; do
   kubectl create namespace "$ns" --dry-run=client -o yaml | kubectl apply --server-side -f -;
 done
+# Apply sops-age keyfile as a secret in the cluster
+cat $SOPS_AGE_KEY_FILE > age.agekey
+cat age.agekey | kubectl --namespace flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
 # CRDs
 helmfile -f crds.yaml template -q | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side --field-manager bootstrap --force-conflicts -f -
 # Apps
 helmfile -f apps.yaml sync --debug
+# --- Clean up ---
+rm age.agekey
 ```
