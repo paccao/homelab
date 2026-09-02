@@ -18,6 +18,9 @@ done
 cat $SOPS_AGE_KEY_FILE > age.agekey
 cat age.agekey | kubectl --namespace flux-system create secret generic sops-age --from-file=age.agekey=/dev/stdin
 # CRDs
+# We install the Gateway API CRDs out-of-band here because Cilium does not ship them in their chart
+kubectl apply --server-side -f https://github.com/kubernetes-sigs/gateway-api/releases/download/v1.6.1/standard-install.yaml
+
 helmfile -f crds.yaml template -q | yq ea -e 'select(.kind == "CustomResourceDefinition")' | kubectl apply --server-side --field-manager bootstrap --force-conflicts -f -
 # Apps
 helmfile -f apps.yaml sync --debug
