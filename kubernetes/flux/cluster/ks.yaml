@@ -18,7 +18,7 @@ spec:
   decryption:
     provider: sops
     secretRef:
-      name: sops-age
+      name: cluster-secrets
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -38,7 +38,7 @@ spec:
   decryption:
     provider: sops
     secretRef:
-      name: sops-age
+      name: cluster-secrets
   postBuild:
     substituteFrom:
       - name: cluster-settings
@@ -58,7 +58,7 @@ spec:
           decryption:
             provider: sops
             secretRef:
-              name: sops-age
+              name: cluster-secrets
           postBuild:
             substituteFrom:
               - name: cluster-settings
