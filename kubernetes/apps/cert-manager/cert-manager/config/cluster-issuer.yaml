@@ -14,7 +14,7 @@ metadata:
 spec:
   isCA: true
   commonName: *app
-  secretName: root-secret
+  secretName: internal-root-crt
   privateKey:
     algorithm: ECDSA
     size: 256
@@ -30,4 +30,4 @@ metadata:
 spec:
   ca:
     # `ClusterIssuer` resource is not namespaced, so `secretName` is assumed to reference secret in `cert-manager` namespace.
-    secretName: root-secret
+    secretName: internal-root-crt

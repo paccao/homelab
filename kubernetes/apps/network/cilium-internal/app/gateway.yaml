@@ -18,7 +18,7 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: root-secret
+            name: internal-root-crt
             namespace: cert-manager
       allowedRoutes:
         namespaces:
