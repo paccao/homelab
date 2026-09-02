@@ -104,7 +104,7 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-        trustCRDsExist: true
+        trustCRDsExist: false # I'm not entirely sure about the CRD situation yet
 
     gatewayAPI:
       enabled: true
