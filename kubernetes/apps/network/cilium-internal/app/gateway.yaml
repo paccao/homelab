@@ -18,8 +18,8 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: internal-tls
-            namespace: cilium-secrets
+            name: root-secret
+            namespace: cert-manager
       allowedRoutes:
         namespaces:
           from: All
