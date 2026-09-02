@@ -106,7 +106,7 @@ spec:
     gatewayAPI:
       enabled: true
       gatewayClass:
-        create: true
+        create: "auto"
     envoy:
       enabled: true
 
