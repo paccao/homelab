@@ -22,5 +22,6 @@ secrets.yaml
 Thumbs.db
 secret.yaml
 secrets.yaml
+cluster-secrets.yaml
 
 infra/cilium/secrets/
