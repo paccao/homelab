@@ -25,8 +25,8 @@ In my [Arcitectural decision record](./docs/arch-decisions/README.md) you can fi
 
 ### Network Stack
 - **CNI**: Cilium
-- **Loadbalancer**: Cilium L2 with ARP/Cilium+OPNSense BGP/MetalLB/kube-vip/k8s-gateway CoreDNS plugin (TBD)
-- **Ingress**: Envoy-gateway (TBD)
+- **Loadbalancer**: Cilium L2 LB-IPAM
+- **GatewayAPI**: Cilium Gateway with Envoy proxy 
 - **DNS**: CoreDNS
 - **Certificates**: Cert-manager, Let's encrypt
 
