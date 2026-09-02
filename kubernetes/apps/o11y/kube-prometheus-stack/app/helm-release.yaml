@@ -36,11 +36,11 @@ spec:
     prometheus:
       route:
         main: # This generates a gateway API route for prometheus.
-          enabled: false
+          enabled: true
           hostnames:
             - prometheus.cluster.local
           parentRefs:
-            - name: envoy-internal
+            - name: cilium-internal
               namespace: network
       prometheusSpec: # docs: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#prometheusspec
         externalUrl: https://prometheus.cluster.local

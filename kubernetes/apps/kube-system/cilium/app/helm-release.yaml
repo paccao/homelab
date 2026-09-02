@@ -10,9 +10,11 @@ spec:
     kind: OCIRepository
     name: cilium-chart
   install:
+    crds: CreateReplace
     remediation:
       retries: -1
   upgrade:
+    crds: CreateReplace
     cleanupOnFail: true
     remediation:
       retries: 3
@@ -58,6 +60,7 @@ spec:
       enabled: true
     k8sServiceHost: 127.0.0.1
     k8sServicePort: 7445
+    kubeProxyReplacement: true
 
     # L2 IPAM
     l2announcements:
@@ -101,10 +104,19 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
-        trustCRDsExist: true
+        trustCRDsExist: false # I'm not entirely sure about the CRD situation yet
 
+    gatewayAPI:
+      enabled: true
+      secretsNamespace:
+        create: true
+        name: cilium-secrets
+        sync: false # Used to sync Ingress secrets to secretsNamespace. I dont use Ingress.
+      gatewayClass:
+        create: "auto"
     envoy:
-      enabled: false
+      enabled: true
+
     dashboards:
       enabled: true
     hubble:

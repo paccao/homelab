@@ -7,3 +7,4 @@ resources:
   - ./oci-repository.yaml
   - ./backup-target.yaml
   - ./longhorn-node.yaml
+  - ./http-route.yaml
