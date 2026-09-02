@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://github.com/datreeio/CRDs-catalog/raw/refs/heads/main/gateway.networking.k8s.io/gateway_v1.json
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: internal-gateway
+spec:
+  gatewayClassName: cilium
+  addresses:
+    - type: IPAddress
+      value: 192.168.30.110
+  listeners:
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: "*.cluster.local"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: internal-tls
+            namespace: cilium-secrets
+      allowedRoutes:
+        namespaces:
+          from: All
