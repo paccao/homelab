@@ -2,8 +2,9 @@
 creation_rules:
   - encrypted_regex: "^(data|stringData)$"
     mac_only_encrypted: true
-  - age:
-    - "age1h909jpfpdmnkwnhsmaydx9j9upw34p7r7zjq97d80nw3l7jv8a0qy43up7"
+    key_groups:
+      - age:
+        - "age1h909jpfpdmnkwnhsmaydx9j9upw34p7r7zjq97d80nw3l7jv8a0qy43up7"
 stores:
   yaml:
     indent: 2
