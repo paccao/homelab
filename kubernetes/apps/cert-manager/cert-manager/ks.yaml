@@ -22,12 +22,6 @@ spec:
   wait: false
   interval: 30m
   timeout: 5m
-
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: *app
-      namespace: cert-manager
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
@@ -51,9 +45,3 @@ spec:
   wait: false
   interval: 30m
   timeout: 5m
-
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: *app
-      namespace: cert-manager
