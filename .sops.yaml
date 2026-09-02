@@ -1,6 +1,13 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/miiyakumo/sops/fb89aeaae6d1bc8cecab27d636f1650029702b39/schema/sops.json
 creation_rules:
-  - encrypted_regex: "^(data|stringData)$"
+  - # IMPORTANT: This rule MUST be above the others
+    path_regex: talos/.*\.sops\.ya?ml
+    mac_only_encrypted: true
+    key_groups:
+      - age:
+          - "age1h909jpfpdmnkwnhsmaydx9j9upw34p7r7zjq97d80nw3l7jv8a0qy43up7"
+  - path_regex: kubernetes/.*\.sops\.ya?ml
+    encrypted_regex: "^(data|stringData)$"
     mac_only_encrypted: true
     key_groups:
       - age:
