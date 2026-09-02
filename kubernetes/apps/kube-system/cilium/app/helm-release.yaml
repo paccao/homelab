@@ -103,8 +103,13 @@ spec:
         enabled: true
         trustCRDsExist: true
 
+    gatewayAPI:
+      enabled: true
+      gatewayClass:
+        create: true
     envoy:
-      enabled: false
+      enabled: true
+
     dashboards:
       enabled: true
     hubble:
