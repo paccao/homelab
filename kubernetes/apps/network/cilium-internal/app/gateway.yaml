@@ -5,7 +5,7 @@ kind: Gateway
 metadata:
   name: internal-gateway
 spec:
-  gatewayClassName: cilium
+  gatewayClassName: cilium # default cilium gatewayClass
   addresses:
     - type: IPAddress
       value: 192.168.30.110
