@@ -7,4 +7,4 @@ resources:
   - ./http-route.yaml
   - ./service-monitor.yaml
   # - ./datasource-alerts.yaml
-  # - ./datasource-metrics.yaml
+  - ./datasource-metrics.yaml
