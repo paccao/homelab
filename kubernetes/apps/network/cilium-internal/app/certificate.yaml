@@ -6,8 +6,9 @@ metadata:
   name: internal-tls
 spec:
   secretName: internal-tls
+  commonName: "${CLUSTER_DOMAIN}"
   dnsNames:
-    - "*.cluster.local"
+    - "*.${CLUSTER_DOMAIN}"
   issuerRef:
     name: your-issuer
     kind: ClusterIssuer
