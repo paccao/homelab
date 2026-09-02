@@ -107,6 +107,10 @@ spec:
 
     gatewayAPI:
       enabled: true
+      secretsNamespace:
+        create: true
+        name: cilium-secrets
+        sync: false # Used to sync Ingress secrets to secretsNamespace. I dont use Ingress.
       gatewayClass:
         create: "auto"
     envoy:
