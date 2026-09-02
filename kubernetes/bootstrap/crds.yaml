@@ -21,9 +21,6 @@ bases:
 defaultInherit: default
 
 releases:
-  # - name: envoy-gateway
-  #   namespace: network
-
   - name: kube-prometheus-stack
     namespace: o11y
 
